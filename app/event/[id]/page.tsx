@@ -15,12 +15,6 @@ const Event = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="md:shadow md:py-8 md:px-10 md:border md:rounded-md">
-      <Link
-        href={"/"}
-        className=" w-32 my-4 md:hidden border  justify-center rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
-      >
-        <ChevronLeft /> Retour
-      </Link>
       <div className="flex gap-1  md:-ml-6 font-bold items-start">
         <Link href={"/"} className="hidden md:flex hover:text-blue-600 mt-1">
           <ChevronLeft /> <span className="sr-only">Retour</span>
@@ -77,10 +71,9 @@ const Event = async ({ params }: { params: { id: string } }) => {
       />
       <Link
         href={"/"}
-        className="w-32 mt-4 border  justify-center rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
+        className=" w-full text-blue-700 border-blue-700 md:w-32 my-4 border  justify-center rounded-md shadow-sm flex whitespace-nowrap md:py-2 py-4 px-5 hover:text-white hover:bg-blue-500 "
       >
-        <ChevronLeft />
-        Retour à l&apos;accueil
+        <ChevronLeft /> Retour
       </Link>
     </div>
   );
