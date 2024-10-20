@@ -1,7 +1,6 @@
 import { fetchEventById } from "@/lib/fetchEvents";
-import { Calendar1, ChevronLeft, Link2Icon, MapPin } from "lucide-react";
+import { Calendar1, Link2Icon, MapPin } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BottomBack, MiniLinkBack } from "./ui/BackBtn";
 
