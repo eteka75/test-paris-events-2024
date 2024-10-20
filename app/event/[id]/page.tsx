@@ -3,6 +3,7 @@ import { Calendar1, ChevronLeft, Link2Icon, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BottomBack, MiniLinkBack } from "./ui/BackBtn";
 
 const Event = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -16,9 +17,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
   return (
     <div className="md:shadow md:py-8 md:px-10 md:border md:rounded-md">
       <div className="flex gap-1  md:-ml-6 font-bold items-start">
-        <Link href={"/"} className="hidden md:flex hover:text-blue-600 mt-1">
-          <ChevronLeft /> <span className="sr-only">Retour</span>
-        </Link>
+        <MiniLinkBack />
         <h1 className="text-2xl md:text-start text-center">
           {event.fields.title}
         </h1>
@@ -69,12 +68,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
         className="text-lg space-y-4 event-content"
         dangerouslySetInnerHTML={{ __html: event.fields.description }}
       />
-      <Link
-        href={"/"}
-        className=" w-full text-blue-700 border-blue-700 md:w-32 my-4 border  justify-center rounded-md shadow-sm flex whitespace-nowrap md:py-2 py-4 px-5 hover:text-white hover:bg-blue-500 "
-      >
-        <ChevronLeft /> Retour
-      </Link>
+      <BottomBack />
     </div>
   );
 };
