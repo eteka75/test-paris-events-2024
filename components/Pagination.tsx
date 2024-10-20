@@ -29,7 +29,7 @@ const Pagination: React.FC<PaginationProps> = ({
   }
   return (
     <div className="grid lg:flex gap-2 md:justify-center items-center mt-4">
-      <label className="border flex gap-1 rounded-md p-2 mx-1">
+      <label className="border flex justify-center gap-1 rounded-md p-2 mx-1">
         Afficher par page:
         <select
           className="ml-2 bg-white right-0 rounded focus:ring-1 focus:ring-gray-500"
@@ -47,7 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {!loading && totalPages > 0 && totalPages >= currentPage && (
           <>
             {" "}
-            <div className="text-center md:text-start">
+            <div className="text-center sm:text-start">
               {" "}
               Page {currentPage} sur {totalPages}
             </div>
