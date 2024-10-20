@@ -14,15 +14,17 @@ const Event = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="shadow py-8 px-10 border rounded-md">
-      <div className="flex gap-1  -ml-6 font-bold items-start">
-        <Link href={"/"} className="hover:text-blue-600 mt-1">
+    <div className="md:shadow md:py-8 md:px-10 md:border md:rounded-md">
+      <div className="flex gap-1  md:-ml-6 font-bold items-start">
+        <Link href={"/"} className="hidden md:flex hover:text-blue-600 mt-1">
           <ChevronLeft /> <span className="sr-only">Retour</span>
         </Link>
-        <h1 className="text-2xl">{event.fields.title}</h1>
+        <h1 className="text-2xl md:text-start text-center">
+          {event.fields.title}
+        </h1>
       </div>
 
-      <div className="text-sm text-gray-500 flex flex-wrap  gap-2 space-x-2  my-3">
+      <div className="text-sm md:justify-start justify-center text-gray-500 flex flex-wrap  gap-2 space-x-2  my-3">
         {event.fields.date_start && (
           <p className="flex whitespace-pre-wrap  gap-1 items-center">
             <Calendar1 className="w-4 h-4 -mt-0.5" />{" "}
@@ -70,7 +72,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
       <div>
         <Link
           href={"/"}
-          className=" w-32 mt-4 bg-gray-100 rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
+          className=" md:w-32 mt-4 border w-full justify-center rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
         >
           <ChevronLeft /> Retour
         </Link>
