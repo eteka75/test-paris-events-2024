@@ -62,7 +62,7 @@ const EventsList = ({
       }
     };
     fetchData();
-  }, [searchParams, initialPage, initialEventsPerPage]);
+  }, [searchParams, initialSearch, initialPage, initialEventsPerPage]);
 
   // Arrondi du nombre de page
   const totalPages = Math.ceil(totalEvents / eventsPerPage);

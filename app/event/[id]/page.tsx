@@ -79,7 +79,8 @@ const Event = async ({ params }: { params: { id: string } }) => {
         href={"/"}
         className="w-32 mt-4 border  justify-center rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
       >
-        <ChevronLeft /> Retour à l'accueil
+        <ChevronLeft />
+        Retour à l&apos;accueil
       </Link>
     </div>
   );
