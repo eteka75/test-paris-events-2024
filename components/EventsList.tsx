@@ -55,21 +55,14 @@ const EventsList = ({
         setEvents(response.records);
         setTotalEvents(response.nhits);
       } catch {
-        console.error("Erreur lors de la récupération des événements");
+        // console.error("Erreur lors de la récupération des événements");
         setError("Erreur lors de la récupération des événements");
       } finally {
         setLoading(false);
       }
     };
-
-    // optimisation de la recherche
-    // if (
-    //   searchParams.get("search") !== initialSearch &&
-    //   Number(currentPage)! > 0
-    // ) {
     fetchData();
-    // }
-  }, [searchParams, initialSearch, initialPage, initialEventsPerPage]);
+  }, [searchParams, initialPage, initialEventsPerPage]);
 
   // Arrondi du nombre de page
   const totalPages = Math.ceil(totalEvents / eventsPerPage);

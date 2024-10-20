@@ -1,6 +1,7 @@
 // components/Filters.tsx
 "use client";
 
+import { Search } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -74,9 +75,10 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           />
           <button
             type="submit"
-            className="text-white absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white min-h-6 flex items-center whitespace-nowrap absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Rechercher
+            <Search className="h-5 w-5 mr-1 md:hidden" />
+            <span className="hidden md:flex"> Rechercher</span>
           </button>
         </div>
       </form>
