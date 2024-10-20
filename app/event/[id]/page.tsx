@@ -15,6 +15,12 @@ const Event = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="md:shadow md:py-8 md:px-10 md:border md:rounded-md">
+      <Link
+        href={"/"}
+        className=" w-32 my-4 md:hidden border  justify-center rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
+      >
+        <ChevronLeft /> Retour
+      </Link>
       <div className="flex gap-1  md:-ml-6 font-bold items-start">
         <Link href={"/"} className="hidden md:flex hover:text-blue-600 mt-1">
           <ChevronLeft /> <span className="sr-only">Retour</span>
@@ -63,20 +69,18 @@ const Event = async ({ params }: { params: { id: string } }) => {
         )}
       </div>
       {event.fields.lead_text && (
-        <div className=" text-lg font-bold py-4">{event.fields.lead_text}</div>
+        <div className="text-lg font-bold py-4">{event.fields.lead_text}</div>
       )}
       <div
         className="text-lg space-y-4"
         dangerouslySetInnerHTML={{ __html: event.fields.description }}
       />
-      <div>
-        <Link
-          href={"/"}
-          className=" md:w-32 mt-4 border w-full justify-center rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
-        >
-          <ChevronLeft /> Retour
-        </Link>
-      </div>
+      <Link
+        href={"/"}
+        className="w-32 mt-4 border  justify-center rounded-md shadow-sm flex whitespace-nowrap py-2 px-5 hover:text-white hover:bg-blue-500 "
+      >
+        <ChevronLeft /> Retour à l'accueil
+      </Link>
     </div>
   );
 };
