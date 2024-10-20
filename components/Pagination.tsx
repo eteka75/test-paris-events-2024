@@ -47,7 +47,7 @@ const Pagination: React.FC<PaginationProps> = ({
         {!loading && totalPages > 0 && totalPages >= currentPage && (
           <>
             {" "}
-            <div className="text-center sm:text-start">
+            <div className="text-center lg:text-start">
               {" "}
               Page {currentPage} sur {totalPages}
             </div>
