@@ -66,7 +66,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
         <div className="text-lg font-bold py-4">{event.fields.lead_text}</div>
       )}
       <div
-        className="text-lg space-y-4"
+        className="text-lg space-y-4 event-content"
         dangerouslySetInnerHTML={{ __html: event.fields.description }}
       />
       <Link

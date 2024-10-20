@@ -15,7 +15,9 @@
     --foreground: #ededed;
   }
 }
-
+.event-content img {
+  @apply w-full my-2 bg-slate-100 rounded-lg;
+}
 body {
   color: var(--foreground);
   background: var(--background);
