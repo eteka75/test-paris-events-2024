@@ -28,6 +28,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
   const [activeCity, setActiveCity] = useState<string | null>(null);
   useEffect(() => {
     setQuery(search ?? "");
+    setActiveCity(`${search}`);
   }, [search]);
 
   const searchParams = useSearchParams();
