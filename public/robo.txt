@@ -1,0 +1,4 @@
+User-agent: *
+
+# Bloquer les moteurs de recherche pour l'api
+Disallow: /api/
