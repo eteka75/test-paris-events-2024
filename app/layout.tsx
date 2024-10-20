@@ -33,7 +33,7 @@ export default function RootLayout({
             <Link href="/">
               {" "}
               <h1 className="uppercase bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-transparent bg-clip-text text-xl md:text-2xl xl:text-3xl text-center font-bold">
-                Les évènements sur Paris
+                Les évènements à Paris
               </h1>
             </Link>
           </header>
