@@ -39,6 +39,9 @@ export default function RootLayout({
           </header>
           <div>{children}</div>
           <footer className="flex flex-wrap text-sm justify-center gap-6 py-4 mt-4">
+            <Link className="hover:underline" href={"/"}>
+              Accueil
+            </Link>
             <Link className="hover:underline" href={"#"}>
               A propos
             </Link>
