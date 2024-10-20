@@ -19,6 +19,7 @@ const Home = async ({ searchParams }: HomePageProps) => {
 
   return (
     <EventsList
+      key={"event_list"}
       initialPage={currentPage}
       initialSearch={search}
       initialEventsPerPage={eventsPerPage}

@@ -83,7 +83,7 @@ const EventsList = ({
 
   return (
     <>
-      <Filters search={search} onSearch={handleSearch} />
+      <Filters key={"search"} search={search} onSearch={handleSearch} />
 
       <div className="text-sm opacity-80">
         {!loading && totalEvents && search !== "" ? (
@@ -106,15 +106,19 @@ const EventsList = ({
         ) : events?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {events.map((event, index) => (
-              <EventCard key={index} event={event} />
+              <EventCard
+                key={index + "_" + Math.random() * 999}
+                event={event}
+              />
             ))}
           </div>
         ) : (
-          <EventNull />
+          <EventNull key={"eventnull"} />
         )}
       </div>
 
       <Pagination
+        key={"pagination"}
         loading={loading}
         currentPage={currentPage}
         totalPages={totalPages}
