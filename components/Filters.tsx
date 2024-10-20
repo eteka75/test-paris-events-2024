@@ -3,7 +3,8 @@
 
 import { Search } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface FiltersProps {
   onSearch: (query: string) => void;
@@ -22,18 +23,24 @@ const cities = [
  * @returns search View
  */
 export default function Filters({ onSearch, search }: FiltersProps) {
-  const [query, setQuery] = useState(search);
+  const [query, setQuery] = useState<string>();
 
   const [activeCity, setActiveCity] = useState<string | null>(null);
+  useEffect(() => {
+    setQuery(search ?? "");
+  }, [search]);
+
+  const searchParams = useSearchParams();
+  const nbPerPage = searchParams.get("nb_par_page") || "10";
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
 
     onSearch(query ?? "");
+    setActiveCity(`${query}`);
   };
   const handleCityClick = (city: string | null) => {
     setActiveCity(city);
-    // onSearch(`${city}`);
     setQuery(city ?? "");
   };
 
@@ -89,7 +96,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
               ? "bg-blue-500 border-0 text-white"
               : ""
           }`}
-          href={`/`}
+          href={`/?nb_par_page=${nbPerPage}`}
           onClick={() => handleCityClick(null)}
         >
           Accueil
@@ -100,7 +107,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
             className={`border mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
               activeCity === city ? "bg-blue-500 border-0 text-white" : ""
             }`}
-            href={`/?search=${city}`}
+            href={`/?search=${city}&nb_par_page=${nbPerPage}`}
             onClick={() => handleCityClick(city ?? "")}
           >
             {city}

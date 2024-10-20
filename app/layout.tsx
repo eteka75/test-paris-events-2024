@@ -30,7 +30,7 @@ export default function RootLayout({
       >
         <main className="px-4 py-6 max-w-screen-sm mx-auto grid grid-rows-[50px_1fr_110px] lg:grid-rows-[50px_1fr_60px] min-h-screen">
           <header>
-            <Link href={"/"}>
+            <Link href="/">
               {" "}
               <h1 className="uppercase bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-transparent bg-clip-text text-xl md:text-2xl xl:text-3xl text-center font-bold">
                 Les évènements sur Paris
