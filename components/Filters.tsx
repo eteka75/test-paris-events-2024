@@ -67,7 +67,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 ps-10 text-sm text-gray-900 border bg-white border-gray-300 rounded-lg  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Rechercher un événement sur Paris ..."
             required
             value={query}
@@ -82,7 +82,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           </button>
         </div>
       </form>
-      <div className="flex flex-wrap justify-start  space-x-3space-y-4 text-sm">
+      <div className="flex flex-wrap justify-center md:justify-start  space-x-3space-y-4 text-sm">
         <Link
           className={`border mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
             activeCity === null && (search === "" || search === null)
