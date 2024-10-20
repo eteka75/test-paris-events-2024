@@ -18,7 +18,7 @@ L'API est disponible à cette adresse :
 
 Avant d'installer et de lancer ce projet, assurez-vous d'avoir les éléments suivants installés sur votre système :
 
-- Node.js (version 28 ou supérieure)
+- Node.js (>=version 18.x )
 - npm ou pnpm pour la gestion de paquets
 - Un éditeur de code comme : VS Code, Sublime text, Web Storm, etc. (j'ai utilisé VS code)
 
@@ -57,7 +57,7 @@ ou si vous utilisé npm
 Si vous finissez d'inbstaller les dépendances, vous pouvez lancer le projet en mode développement avec la commande suivante :
 
 ```bash
-    pnpm run dev  # ou npm dev
+    pnpm run dev
 ```
 
 ou si vous utilisé npm
@@ -87,3 +87,5 @@ Au cas ou ce port est utilisé, un autre port choisit sera affiché dans la cons
 ## Licence
 
 Ce projet est sous licence MIT. Voir le fichier [LICENSE](https://fr.wikipedia.org/wiki/Licence_MIT) pour plus de détails.
+
+A très vite ! 🤗
