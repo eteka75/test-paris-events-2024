@@ -32,7 +32,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <label className="border flex gap-1 rounded-md p-2 mx-1">
         Afficher par page:
         <select
-          className="ml-2 right-0 rounded focus:ring-1 focus:ring-gray-500"
+          className="ml-2 bg-white right-0 rounded focus:ring-1 focus:ring-gray-500"
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
         >
