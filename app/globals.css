@@ -15,12 +15,15 @@
     --foreground: #ededed;
   }
 }
-.event-content img {
+.event-article img {
   @apply w-full my-2 bg-slate-100 rounded-lg;
 }
-img {
-  max-width: 100%;
+.event-article,
+.event-article *,
+.lead {
+  @apply break-words max-w-[99%];
 }
+
 body {
   color: var(--foreground);
   background: var(--background);

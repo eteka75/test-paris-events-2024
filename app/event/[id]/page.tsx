@@ -14,7 +14,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="md:shadow md:py-8 md:px-10 md:border md:rounded-md">
+    <div className="md:shadow event-article md:py-8 md:px-10 md:border md:rounded-md">
       <div className="flex gap-1  md:-ml-6 font-bold items-start">
         <MiniLinkBack />
         <h1 className="text-2xl md:text-start text-center">
@@ -61,12 +61,12 @@ const Event = async ({ params }: { params: { id: string } }) => {
         )}
       </div>
       {event.fields.lead_text && (
-        <div className="text-lg font-bold py-4 break-words">
+        <div className="text-lg lead font-bold py-4 break-words overflow-hidden overflow-ellipsis max-w-full">
           {event.fields.lead_text}
         </div>
       )}
       <div
-        className="text-lg space-y-4 event-content break-words"
+        className="text-lg space-y-4 event-content break-words overflow-hidden overflow-ellipsis max-w-full"
         dangerouslySetInnerHTML={{ __html: event.fields.description }}
       />
       <BottomBack />
