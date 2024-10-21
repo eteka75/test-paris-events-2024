@@ -7,7 +7,11 @@ export const MiniLinkBack = () => {
   const router = useRouter();
 
   const handleBackClick = useCallback(() => {
-    router.back();
+    if (document.referrer) {
+      router.back();
+    } else {
+      router.push("/");
+    }
   }, [router]);
   return (
     <button
@@ -20,9 +24,12 @@ export const MiniLinkBack = () => {
 };
 export const BottomBack = () => {
   const router = useRouter();
-
   const handleBackClick = useCallback(() => {
-    router.back();
+    if (document.referrer) {
+      router.back();
+    } else {
+      router.push("/");
+    }
   }, [router]);
   return (
     <button
