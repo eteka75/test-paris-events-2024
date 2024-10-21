@@ -24,13 +24,13 @@ const Event = async ({ params }: { params: { id: string } }) => {
 
       <div className="text-sm md:justify-start justify-center text-gray-500 flex flex-wrap  gap-2 space-x-2  my-3">
         {event.fields.date_start && (
-          <p className="flex whitespace-pre-wrap  gap-1 items-center">
+          <p className="flex whitespace-pre-wrap break-words  gap-1 items-center">
             <Calendar1 className="w-4 h-4 -mt-0.5" />{" "}
             {new Date(event.fields.date_start ?? "").toLocaleDateString()}
           </p>
         )}
         {event.fields.address_city && (
-          <p className="flex whitespace-pre-wrap gap-1 items-center">
+          <p className="flex whitespace-pre-wrap break-words gap-1 items-center">
             <MapPin className="w-4 h-4 -mt-0.5" />
             {event.fields.address_city ?? null}
             {event.fields.address_name
@@ -42,7 +42,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
           <a
             href={event.fields.url}
             target="_blanck"
-            className="flex underline whitespace-pre-wrap gap-1 items-start"
+            className="flex underline whitespace-pre-wrap break-words gap-1 items-start"
           >
             <Link2Icon className="w-4 h-4 -mt-0.5" />
             {event.fields.url ?? null}
@@ -61,10 +61,12 @@ const Event = async ({ params }: { params: { id: string } }) => {
         )}
       </div>
       {event.fields.lead_text && (
-        <div className="text-lg font-bold py-4">{event.fields.lead_text}</div>
+        <div className="text-lg font-bold py-4 break-words">
+          {event.fields.lead_text}
+        </div>
       )}
       <div
-        className="text-lg space-y-4 event-content"
+        className="text-lg space-y-4 event-content break-words"
         dangerouslySetInnerHTML={{ __html: event.fields.description }}
       />
       <BottomBack />
