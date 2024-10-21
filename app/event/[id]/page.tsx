@@ -63,7 +63,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
         )}
       </div>
       {event.fields.lead_text && (
-        <div className="text-lg lead font-bold py-4 break-words overflow-hidden overflow-ellipsis max-w-full">
+        <div className="text-xl lead font-bold py-4 break-words overflow-hidden overflow-ellipsis max-w-full">
           {event.fields.lead_text}
         </div>
       )}

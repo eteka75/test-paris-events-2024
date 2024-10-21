@@ -72,7 +72,8 @@ const EventsList = ({
     }
   }, [
     searchParams,
-    initialSearch,
+
+    ,
     initialPage,
     currentPage,
     search,
