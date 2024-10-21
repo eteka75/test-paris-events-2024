@@ -71,7 +71,7 @@ export default function RootLayout({
             <Link className="hover:underline" href={"#"}>
               Autres événements
             </Link>
-            <div className="my-2 text-center text-xs text-gray-500">
+            <div className="my-2 text-center text-xs opacity-70">
               <p>&copy; {new Date().getFullYear()} Beebs Event.</p>
             </div>
           </footer>
