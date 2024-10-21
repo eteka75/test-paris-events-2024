@@ -14,6 +14,8 @@ export default function EventCard({ event }: { event: EventRecord }) {
         <Image
           src={img}
           alt={title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-48 object-cover"
           width={500}
           height={500}

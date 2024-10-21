@@ -54,6 +54,8 @@ const Event = async ({ params }: { params: { id: string } }) => {
           <Image
             src={event.fields.cover_url}
             alt={event.fields.title}
+            loading="lazy"
+            decoding="async"
             className="w-full h-48 object-cover rounded-lg"
             width={500}
             height={500}
