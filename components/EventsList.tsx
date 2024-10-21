@@ -75,6 +75,7 @@ const EventsList = ({
     initialSearch,
     initialPage,
     currentPage,
+    search,
     initialEventsPerPage,
     initialEvents.length,
   ]);
