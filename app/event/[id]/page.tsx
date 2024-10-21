@@ -66,7 +66,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
         </div>
       )}
       <div
-        className="text-lg space-y-4 event-content max-w-[100%] break-all overflow-hidden overflow-ellipsis"
+        className=" space-y-4  event-content max-w-[100%] break-all overflow-hidden overflow-ellipsis"
         dangerouslySetInnerHTML={{ __html: event.fields.description }}
       />
       <BottomBack />

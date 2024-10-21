@@ -25,7 +25,7 @@
 }
 .event-content,
 .event-content * {
-  @apply text-lg;
+  @apply text-xl;
 }
 
 body {
