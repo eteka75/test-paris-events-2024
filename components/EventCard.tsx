@@ -21,9 +21,9 @@ export default function EventCard({ event }: { event: EventRecord }) {
       </Link>
       <div className="p-4">
         <Link href={`/event/${id}`}>
-          <h3 className="text-lg font-semibold">{title}</h3>
+          <h2 className="text-lg font-semibold">{title}</h2>
         </Link>
-        <p className="text-sm text-gray-600">{address_name}</p>
+        <h3 className="text-sm text-gray-600">{address_name}</h3>
 
         <div className="text-sm text-gray-500 flex  gap-4 mt-3">
           {date_start && (

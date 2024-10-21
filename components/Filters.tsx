@@ -65,9 +65,9 @@ export default function Filters({ onSearch, search }: FiltersProps) {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>
@@ -84,12 +84,14 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           <button
             type="submit"
             className="text-white min-h-6 flex items-center whitespace-nowrap absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            aria-label="Rechercher"
           >
             <Search className="h-5 w-5 mr-1 md:hidden" />
-            <span className="hidden md:flex"> Rechercher</span>
+            <span className="hidden md:flex">Rechercher</span>
           </button>
         </div>
       </form>
+
       <div className="flex flex-wrap justify-center md:justify-start  space-x-3space-y-4 text-sm">
         <Link
           className={`border dark:border-gray-800  dark:bg-gray-800 mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
