@@ -102,7 +102,7 @@ const EventsList = ({
     <>
       <Filters key={"search"} search={search} onSearch={handleSearch} />
 
-      <div className="text-sm opacity-80">
+      <div className="text-sm text-center md:text-start opacity-80">
         {!loading && totalEvents && search !== "" ? (
           <>
             {totalEvents} résultats trouvé{totalEvents > 1 ? "s" : ""}
