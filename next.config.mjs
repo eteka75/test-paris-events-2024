@@ -25,9 +25,9 @@ const nextConfig = {
   //   ];
   // },
   // Optionnel : Configuration des polices si nécessaire
-  experimental: {
-    optimizeCss: true, // Pour optimiser le CSS
-  },
+  // experimental: {
+  //   optimizeCss: true, // Pour optimiser le CSS
+  // },
 };
 
 export default nextConfig;
