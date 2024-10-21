@@ -76,7 +76,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
             type="search"
             id="default-search"
             className="block w-full p-4 ps-10 text-sm text-gray-900 border bg-white border-gray-300 rounded-lg  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Rechercher un événement sur Paris ..."
+            placeholder="Trouvez votre événement à Paris..."
             required
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -92,7 +92,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
       </form>
       <div className="flex flex-wrap justify-center md:justify-start  space-x-3space-y-4 text-sm">
         <Link
-          className={`border mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
+          className={`border dark:border-gray-800  dark:bg-gray-800 mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
             activeCity === null && (search === "" || search === null)
               ? "bg-blue-500 border-0 text-white"
               : ""
@@ -105,7 +105,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
         {cities.map((city) => (
           <Link
             key={city}
-            className={`border mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
+            className={`border dark:border-gray-800  dark:bg-gray-800 mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
               activeCity === city ? "bg-blue-500 border-0 text-white" : ""
             }`}
             href={`/?search=${city}&nb_par_page=${nbPerPage}`}

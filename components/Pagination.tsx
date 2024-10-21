@@ -28,11 +28,11 @@ const Pagination: React.FC<PaginationProps> = ({
     currentPage = 1;
   }
   return (
-    <div className="grid lg:flex gap-2 md:justify-center items-center mt-4">
-      <label className="border flex justify-center gap-1 rounded-md p-2 mx-1">
+    <div className="grid  lg:flex gap-2 md:justify-center items-center mt-4">
+      <label className="border dark:border-gray-800  dark:bg-gray-800 flex justify-center gap-1 rounded-md py-2 px-4">
         Afficher par page:
         <select
-          className="ml-2 bg-white right-0 rounded focus:ring-1 focus:ring-gray-500"
+          className="ml-2 bg-white  dark:bg-gray-800 right-0 rounded focus:ring-1 focus:ring-gray-500"
           value={itemsPerPage}
           onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
         >
@@ -53,14 +53,14 @@ const Pagination: React.FC<PaginationProps> = ({
             </div>
             <div className="flex  gap-2">
               <button
-                className="border w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-2"
+                className="border dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-2"
                 onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
                 disabled={currentPage === 1}
               >
                 <ChevronLeft /> Précédent
               </button>
               <button
-                className="border w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-2"
+                className="border dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-2"
                 onClick={() =>
                   onPageChange(Math.min(currentPage + 1, totalPages))
                 }

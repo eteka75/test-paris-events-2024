@@ -9,7 +9,7 @@ export default function EventCard({ event }: { event: EventRecord }) {
     event.fields;
   const img = cover_url ?? "/assets/img/default.png";
   return (
-    <div className="border rounded-lg shadow-md overflow-hidden">
+    <div className="border dark:border-gray-800  dark:bg-gray-800 dark:shadow-lg rounded-lg shadow-md overflow-hidden">
       <Link href={`/event/${id}`}>
         <Image
           src={img}

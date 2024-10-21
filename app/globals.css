@@ -21,7 +21,7 @@
 .event-article,
 .event-article *,
 .lead {
-  @apply break-words max-w-[99%];
+  @apply break-all max-w-[99%];
 }
 .event-content,
 .event-content * {
