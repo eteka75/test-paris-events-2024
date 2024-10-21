@@ -51,6 +51,7 @@ const EventsList = ({
     if (
       initialEvents.length === 0 ||
       currentPage !== initialPage || // je verifie si la page a changé
+      search !== initialSearch ||
       currentPage !== initialPage ||
       initialEventsPerPage !== eventsPerPage // je verifie aussi si la le nombre d'event par page a changé
     ) {
