@@ -23,6 +23,10 @@
 .lead {
   @apply break-words max-w-[99%];
 }
+.event-content,
+.event-content * {
+  @apply text-lg;
+}
 
 body {
   color: var(--foreground);
