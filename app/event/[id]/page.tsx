@@ -22,7 +22,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
         </h1>
       </div>
 
-      <div className="text-sm md:justify-start justify-center text-gray-500 flex flex-wrap  gap-2 space-x-2  my-3">
+      <div className="text-sm md:justify-start justify-center opacity-70 flex flex-wrap  gap-2 space-x-2  my-3">
         {event.fields.date_start && (
           <p className="flex whitespace-pre-wrap break-words  gap-1 items-center">
             <Calendar1 className="w-4 h-4 -mt-0.5" />{" "}

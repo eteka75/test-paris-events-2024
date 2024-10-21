@@ -144,7 +144,7 @@ export default EventsList;
 
 const EventNull = () => {
   return (
-    <div className="text-center border shadow-sm rounded-lg py-10">
+    <div className="text-center border dark:border-gray-800 dark:bg-gray-800 shadow-sm rounded-lg py-10">
       <Drama className="h-16 w-16 mx-auto mb-4 opacity-35" />
       <h2 className="text-lg font-bold">Aucun événement trouvé</h2>
       <p className="text-gray-600">

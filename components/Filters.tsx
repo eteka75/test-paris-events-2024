@@ -28,7 +28,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
   const [activeCity, setActiveCity] = useState<string | null>(null);
   useEffect(() => {
     setQuery(search ?? "");
-    setActiveCity(`${search}`);
+    setActiveCity(search ?? "");
   }, [search]);
 
   const searchParams = useSearchParams();
@@ -37,12 +37,12 @@ export default function Filters({ onSearch, search }: FiltersProps) {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
 
-    onSearch(query ?? "");
+    onSearch(query ? query.trim() : "");
     setActiveCity(`${query}`);
   };
   const handleCityClick = (city: string | null) => {
     setActiveCity(city);
-    setQuery(city ?? "");
+    setQuery(city ? city.trim() : "");
   };
 
   return (
@@ -95,10 +95,11 @@ export default function Filters({ onSearch, search }: FiltersProps) {
 
       <div className="flex flex-wrap justify-center md:justify-start  space-x-3space-y-4 text-sm">
         <Link
-          className={`border dark:border-gray-800  dark:bg-gray-800 mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
-            activeCity === null && (search === "" || search === null)
-              ? "bg-blue-500 border-0 text-white"
-              : ""
+          className={`border dark:border-gray-800   mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
+            (activeCity === null || activeCity === "") &&
+            (search === "" || search === null)
+              ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
+              : "dark:bg-gray-800 bg-white"
           }`}
           href={`/?nb_par_page=${nbPerPage}`}
           onClick={() => handleCityClick(null)}
@@ -108,8 +109,10 @@ export default function Filters({ onSearch, search }: FiltersProps) {
         {cities.map((city) => (
           <Link
             key={city}
-            className={`border dark:border-gray-800  dark:bg-gray-800 mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
-              activeCity === city ? "bg-blue-500 border-0 text-white" : ""
+            className={`border dark:border-gray-800   mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
+              activeCity === city
+                ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
+                : "dark:bg-gray-800 bg-white"
             }`}
             href={`/?search=${city}&nb_par_page=${nbPerPage}`}
             onClick={() => handleCityClick(city ?? "")}

@@ -23,9 +23,9 @@ export default function EventCard({ event }: { event: EventRecord }) {
         <Link href={`/event/${id}`}>
           <h2 className="text-lg font-semibold">{title}</h2>
         </Link>
-        <h3 className="text-sm text-gray-600">{address_name}</h3>
+        <h3 className="text-sm opacity-70">{address_name}</h3>
 
-        <div className="text-sm text-gray-500 flex  gap-4 mt-3">
+        <div className="text-sm opacity-60 flex  gap-4 mt-3">
           {date_start && (
             <p className="flex whitespace-nowrap gap-1 items-center">
               <Calendar1 className="w-4 h-4 -mt-0.5" />{" "}
