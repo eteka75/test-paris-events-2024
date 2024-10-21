@@ -48,7 +48,12 @@ const EventsList = ({
     setEventsPerPage(newPerPage);
 
     // optimisation de la requete
-    if (initialEvents.length === 0) {
+    if (
+      initialEvents.length === 0 ||
+      currentPage !== initialPage || // je verifie si la page a changé
+      currentPage !== initialPage ||
+      initialEventsPerPage !== eventsPerPage // je verifie aussi si la le nombre d'event par page a changé
+    ) {
       const fetchData = async () => {
         setError("");
         setLoading(true);
@@ -68,6 +73,7 @@ const EventsList = ({
     searchParams,
     initialSearch,
     initialPage,
+    currentPage,
     initialEventsPerPage,
     initialEvents.length,
   ]);
