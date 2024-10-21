@@ -47,22 +47,30 @@ const EventsList = ({
     setCurrentPage(newPage);
     setEventsPerPage(newPerPage);
 
-    const fetchData = async () => {
-      setError("");
-      setLoading(true);
-      try {
-        const response = await fetchEvents(newSearch, newPerPage, newPage);
-        setEvents(response.records);
-        setTotalEvents(response.nhits);
-      } catch {
-        // console.error("Erreur lors de la récupération des événements");
-        setError("Erreur lors de la récupération des événements");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [searchParams, initialSearch, initialPage, initialEventsPerPage]);
+    // optimisation de la requete
+    if (initialEvents.length === 0) {
+      const fetchData = async () => {
+        setError("");
+        setLoading(true);
+        try {
+          const response = await fetchEvents(newSearch, newPerPage, newPage);
+          setEvents(response.records);
+          setTotalEvents(response.nhits);
+        } catch {
+          setError("Erreur lors de la récupération des événements");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchData();
+    }
+  }, [
+    searchParams,
+    initialSearch,
+    initialPage,
+    initialEventsPerPage,
+    initialEvents.length,
+  ]);
 
   // Arrondi du nombre de page
   const totalPages = Math.ceil(totalEvents / eventsPerPage);
