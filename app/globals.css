@@ -15,13 +15,15 @@
     --foreground: #ededed;
   }
 }
-.event-article img {
-  @apply w-full my-2 bg-slate-100 rounded-lg;
+.event-article img,
+.event-article iframe,
+.event-article video {
+  @apply w-full my-2 bg-slate-100 dark:bg-gray-700 rounded-lg min-h-[250px];
 }
 .event-article,
 .event-article *,
 .lead {
-  @apply break-all max-w-[99%];
+  @apply break-all max-w-full;
 }
 .event-content,
 .event-content * {
