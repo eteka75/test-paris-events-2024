@@ -88,6 +88,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           >
             <Search className="h-5 w-5 mr-1 md:hidden" />
             <span className="hidden md:flex">Rechercher</span>
+            <span className="sr-only">Rechercher</span>
           </button>
         </div>
       </form>
