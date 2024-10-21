@@ -3,7 +3,7 @@ import { fetchEvents } from "@/lib/fetchEvents";
 import { HomePageProps } from "@/lib/props.type";
 
 export const metadata = {
-  title: "Les évènement sur Paris - Beebs Event",
+  title: "Beebs Event",
   description: "Découvrez tous évènements sur Paris et environs",
 };
 
