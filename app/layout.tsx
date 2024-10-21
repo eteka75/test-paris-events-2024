@@ -29,6 +29,19 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={metadata.description} />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="manifest" href="/manifest.json" />
+        <link
+          rel="icon"
+          href="/icon512_rounded.png"
+          sizes="512x512"
+          type="image/png"
+        />
+        <link
+          rel="icon"
+          href="/icon512_maskable.png"
+          sizes="512x512"
+          type="image/png"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
