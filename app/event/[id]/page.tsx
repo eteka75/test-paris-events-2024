@@ -14,7 +14,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="md:shadow event-article md:py-8 md:px-10 md:border border dark:border-gray-800  dark:bg-gray-800 md:rounded-md">
+    <div className="md:shadow event-article md:py-8 md:px-10 md:border dark:border-gray-800  dark:md:bg-gray-800 md:rounded-md">
       <div className="flex gap-1  md:-ml-6 font-bold items-start">
         <MiniLinkBack />
         <h1 className="text-2xl md:text-start text-center">
