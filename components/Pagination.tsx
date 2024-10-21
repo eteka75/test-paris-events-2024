@@ -53,14 +53,14 @@ const Pagination: React.FC<PaginationProps> = ({
             </div>
             <div className="flex  gap-2">
               <button
-                className="border dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
+                className="border justify-center dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
                 onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
                 disabled={currentPage === 1}
               >
                 <ChevronLeft /> Précédent
               </button>
               <button
-                className="border dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
+                className="border justify-center dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
                 onClick={() =>
                   onPageChange(Math.min(currentPage + 1, totalPages))
                 }
