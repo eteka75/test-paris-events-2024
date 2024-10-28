@@ -1,6 +1,13 @@
 // components/Filters.tsx
 "use client";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -11,6 +18,9 @@ interface FiltersProps {
   search?: string;
 }
 const cities = [
+  "Evènement gratuit",
+  "Evènement payant",
+  "Soirée spéciale",
   "Montparnasse",
   "Champs-Élysées",
   "Le Marais",
@@ -92,34 +102,56 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           </button>
         </div>
       </form>
-
-      <div className="flex flex-wrap justify-center md:justify-start  space-x-3space-y-4 text-sm">
-        <Link
-          className={`border dark:border-gray-800   mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
-            (activeCity === null || activeCity === "") &&
-            (search === "" || search === null)
-              ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
-              : "dark:bg-gray-800 bg-white"
-          }`}
-          href={`/?nb_par_page=${nbPerPage}`}
-          onClick={() => handleCityClick(null)}
+      <div className="flex max-w-screen-sm justify-center md:justify-start  space-x-3space-y-4 text-sm">
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className=" max-w-screen-sm mb-4"
         >
-          Accueil
-        </Link>
-        {cities.map((city) => (
-          <Link
-            key={city}
-            className={`border dark:border-gray-800   mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
-              activeCity === city
-                ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
-                : "dark:bg-gray-800 bg-white"
-            }`}
-            href={`/?search=${city}&nb_par_page=${nbPerPage}`}
-            onClick={() => handleCityClick(city ?? "")}
-          >
-            {city}
-          </Link>
-        ))}
+          <CarouselContent className="my-1 ">
+            <CarouselItem key={"index"} className="basis-1/4  ">
+              <div
+                className={`w-full text-center py-1 rounded-full px-2 truncate border ${
+                  search === "" || search === null
+                    ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
+                    : "dark:bg-gray-800 bg-white"
+                }`}
+              >
+                <Link
+                  className="text-sm mx-auto"
+                  href={`/?nb_par_page=${nbPerPage}`}
+                  onClick={() => handleCityClick(null)}
+                >
+                  Accueil
+                </Link>
+              </div>
+            </CarouselItem>
+
+            {cities.map((city, index) => (
+              <CarouselItem key={index} className="basis-1/4">
+                <div
+                  className={`w-full text-center py-1 rounded-full px-2 truncate border ${
+                    activeCity === city
+                      ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
+                      : "dark:bg-gray-800 bg-white"
+                  }`}
+                >
+                  <Link
+                    key={city}
+                    href={`/?search=${city}&nb_par_page=${nbPerPage}`}
+                    onClick={() => handleCityClick(city ?? "")}
+                    className=" text-sm mx-auto"
+                  >
+                    {city}
+                  </Link>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </div>
   );
