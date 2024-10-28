@@ -49,7 +49,7 @@ const EventsList = ({
 
     // optimisation de la requete
     if (
-      initialEvents.length === 0 ||
+      initialEvents?.length === 0 ||
       currentPage !== initialPage || // je verifie si la page a changé
       search !== initialSearch ||
       currentPage !== initialPage ||
@@ -72,13 +72,13 @@ const EventsList = ({
     }
   }, [
     searchParams,
-
-    ,
     initialPage,
     currentPage,
     search,
+    eventsPerPage,
     initialEventsPerPage,
-    initialEvents.length,
+    initialSearch,
+    initialEvents,
   ]);
 
   // Arrondi du nombre de page
