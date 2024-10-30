@@ -31,9 +31,9 @@ const FilterDisplay = ({
     return;
   }
   return (
-    <div className="flex flex-wrap gap-2 mb-2">
+    <div className="flex flex-wrap gap-2 items-center mb-2 py-2">
       {filters && filters["sort"] && (
-        <div className="flex rounded-sm items-center border px-4 text-sm space-x-2 py-1">
+        <div className="flex rounded-sm items-center border px-2 text-sm space-x-2 py-1">
           <span className="">
             <b>Trier par : </b>{" "}
             {filters["sort"] === "date_asc" ? "Plus anciens" : "Plus récents"}
