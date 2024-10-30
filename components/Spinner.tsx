@@ -5,7 +5,7 @@ interface SkeletonCardProps {
 
 export default function SkeletonCard({ nb = 4 }: SkeletonCardProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-4">
       {Array.from({ length: nb }).map((_, index) => (
         <div
           key={index}

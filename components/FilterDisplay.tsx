@@ -31,7 +31,7 @@ const FilterDisplay = ({
     return;
   }
   return (
-    <div className="flex flex-wrap gap-2 items-center mb-2 py-2">
+    <div className="flex flex-wrap gap-2 items-center  py-2">
       {filters && filters["sort"] && (
         <div className="flex rounded-sm items-center border px-2 text-sm space-x-2 py-1">
           <span className="">

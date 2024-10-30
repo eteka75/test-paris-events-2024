@@ -131,11 +131,11 @@ const EventsList = ({
       <FilterDisplay newSearch={newSearch} />
       <DisplayError error={error} />
 
-      <div className="pb-16">
+      <div className="pb-4">
         {loading ? (
           <SkeletonCard nb={eventsPerPage ?? 4} />
         ) : events?.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-2">
             {events.map((event: Event, index) => (
               <EventCard key={index} event={event} />
             ))}
