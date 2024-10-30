@@ -208,7 +208,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
                     mode="single"
                     selected={filters.startDate ?? undefined}
                     onSelect={handleStartDateChange}
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>
@@ -243,7 +242,6 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
                     mode="single"
                     selected={filters.endDate ?? undefined}
                     onSelect={handleEndDateChange}
-                    initialFocus
                   />
                 </PopoverContent>
               </Popover>
