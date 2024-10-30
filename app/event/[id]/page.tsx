@@ -21,12 +21,14 @@ const Event = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="md:shadow event-article md:py-8 md:px-10 md:border dark:border-gray-800  dark:md:bg-gray-800 md:rounded-md">
-      <div className="flex gap-1  md:-ml-6 font-bold items-center md:items-start mb-4">
+      <div className="flex gap-1  md:-ml-8 font-bold items-center md:items-start mb-4 -mt-2 md:mt-0">
         <MiniLinkBack />
-        <h1 className="text-2xl md:text-start text-center">{event.title}</h1>
+        <h1 className="text-2xl w-full md:w-auto md:text-start text-center">
+          {String(event.title).trim()}
+        </h1>
       </div>
 
-      <div className="text-sm md:justify-center justify-center opacity-70 flex flex-wrap  gap-2 space-x-2  my-3">
+      <div className="text-sm md:justify-start justify-center opacity-70 flex flex-wrap  gap-2 space-x-2  my-3">
         {event.date_start && (
           <p className="flex whitespace-pre-wrap break-words  gap-1 items-center">
             <CalendarArrowUpIcon className="w-4 h-4 -mt-0.5" />{" "}
@@ -89,7 +91,7 @@ const Event = async ({ params }: { params: { id: string } }) => {
         </div>
       )}
       <div
-        className=" space-y-4 font-serif add event-content max-w-[100%]  overflow-hidden overflow-ellipsis"
+        className=" space-y-4 leading-relaxed font-serif add event-content max-w-[100%]  overflow-hidden overflow-ellipsis"
         dangerouslySetInnerHTML={{ __html: event?.description }}
       />
       <BottomBack />

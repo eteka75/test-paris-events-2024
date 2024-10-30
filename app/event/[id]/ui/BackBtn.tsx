@@ -16,7 +16,7 @@ export const MiniLinkBack = () => {
   return (
     <button
       onClick={handleBackClick}
-      className="hidden md:flex hover:text-blue-600 mt-1"
+      className="hidden md:flex hover:text-blue-600 px-1  py-0.5 rounded-md shadow-sm border border-opacity-55 "
     >
       <ChevronLeft /> <span className="sr-only">Retour</span>
     </button>

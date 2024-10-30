@@ -8,9 +8,9 @@
 .event-article video {
   @apply w-full my-2 bg-slate-100 dark:bg-gray-700 rounded-lg min-h-[250px];
 }
-.event-article,
-.event-article *,
-.lead {
+.event-article a,
+.event-article * a,
+.lead a {
   @apply break-all max-w-full;
 }
 .event-content,
