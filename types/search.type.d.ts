@@ -1,13 +1,16 @@
 export interface EventRecord {
-  datasetid?: string;
-  recordid?: string;
-  fields: Event;
-  geometry?: Geometry;
-  record_timestamp?: string;
+  results?: Event[];
+  total_count?: number;
+}
+
+export interface FiltersProps {
+  onSearch: (query: string) => void;
+  search?: string;
 }
 
 export interface Event {
   id: string;
+  title: string;
   lat_lon?: [number, number];
   address_street?: string;
   price_type?: string;
@@ -45,3 +48,23 @@ interface Geometry {
   type?: string;
   coordinates?: [number, number]; // [longitude, latitude]
 }
+
+export interface FilterType {
+  sort: string;
+  price: string;
+  audience: string;
+  startDate: Date | null;
+  endDate: Date | null;
+  locale: string;
+}
+
+export type FilterAction =
+  | { type: "SET_SORT"; payload: string }
+  | { type: "SET_PRICE"; payload: string }
+  | { type: "SET_AUDIENCE"; payload: string }
+  | { type: "SET_START_DATE"; payload: Date | null }
+  | { type: "SET_END_DATE"; payload: Date | null }
+  | { type: "CLEAR_END_DATE" }
+  | { type: "SET_LOCALE"; payload: string }
+  | { type: "CLEAR_FILTER"; payload: keyof FilterType }
+  | { type: "RESET_FILTERS" };

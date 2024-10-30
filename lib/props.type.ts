@@ -7,6 +7,3 @@ export interface HomePageProps {
     nb_par_page?: string;
   };
 }
-export interface EventPageProps {
-  id: string;
-}

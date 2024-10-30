@@ -11,10 +11,19 @@ export default function SkeletonCard({ nb = 4 }: SkeletonCardProps) {
           key={index}
           className="animate-pulse border rounded-lg p-4 bg-gray-200 dark:border-gray-900 dark:bg-gray-900"
         >
-          <div className="h-32 bg-gray-300 dark:bg-gray-700 rounded-md mb-4"></div>
+          <div className="h-40 bg-gray-300 dark:bg-gray-700 rounded-md mb-4"></div>
           <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
           <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-full mb-2"></div>
           <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-5/6"></div>
+          <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded mt-4 w-2/6"></div>
+
+          <div className="pt-8 mt-4 flex gap-8">
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded-full w-5/6"></div>
+
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded-full w-5/6"></div>
+
+            <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded-full w-5/6"></div>
+          </div>
         </div>
       ))}
     </div>

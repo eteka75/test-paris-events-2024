@@ -1,15 +1,14 @@
 // components/Filters.tsx
 "use client";
 
-import { Search } from "lucide-react";
+import { Search, SearchCheckIcon, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import SearchFilters from "./SearchFilters";
+import { FiltersProps } from "@/types/search.type";
 
-interface FiltersProps {
-  onSearch: (query: string) => void;
-  search?: string;
-}
 const cities = [
   "Montparnasse",
   "Champs-Élysées",
@@ -24,8 +23,22 @@ const cities = [
  */
 export default function Filters({ onSearch, search }: FiltersProps) {
   const [query, setQuery] = useState<string>();
-
   const [activeCity, setActiveCity] = useState<string | null>(null);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSearch(query ? query.trim() : "");
+    setActiveCity(`${query}`);
+  };
+
+  const handleCityClick = (city: string | null) => {
+    setActiveCity(city);
+    setQuery(city ? city.trim() : "");
+  };
+
+  const handleFilter = () => {
+    onSearch(query ? query.trim() : "");
+  };
   useEffect(() => {
     setQuery(search ?? "");
     setActiveCity(search ?? "");
@@ -33,17 +46,6 @@ export default function Filters({ onSearch, search }: FiltersProps) {
 
   const searchParams = useSearchParams();
   const nbPerPage = searchParams.get("nb_par_page") || "10";
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    onSearch(query ? query.trim() : "");
-    setActiveCity(`${query}`);
-  };
-  const handleCityClick = (city: string | null) => {
-    setActiveCity(city);
-    setQuery(city ? city.trim() : "");
-  };
 
   return (
     <div>
@@ -54,28 +56,14 @@ export default function Filters({ onSearch, search }: FiltersProps) {
         >
           Rechercher
         </label>
-        <div className="relative">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-            <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-              />
-            </svg>
+        <div className="relative flex ">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-1 ">
+            <SearchFilters onFilters={handleFilter} />
           </div>
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-10 text-sm text-gray-900 border bg-white border-gray-300 rounded-lg  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 ps-16 text-sm text-gray-900 border bg-white border-gray-300 rounded-lg  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Trouvez votre événement à Paris..."
             required
             value={query}
@@ -83,12 +71,11 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           />
           <button
             type="submit"
-            className="text-white min-h-6 flex items-center whitespace-nowrap absolute end-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white min-h-6 flex items-center h-12 whitespace-nowrap absolute end-1 bottom-[3px] bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             aria-label="Rechercher"
           >
             <Search className="h-5 w-5 mr-1 md:hidden" />
             <span className="hidden md:flex">Rechercher</span>
-            <span className="sr-only">Rechercher</span>
           </button>
         </div>
       </form>

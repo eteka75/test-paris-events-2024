@@ -27,6 +27,10 @@ const Pagination: React.FC<PaginationProps> = ({
   if (isNaN(currentPage)) {
     currentPage = 1;
   }
+  // en cours de chargement ou pas de résultat
+  if (loading || !(totalPages > 0 && totalPages >= currentPage)) {
+    return;
+  }
   return (
     <div className="grid  lg:flex gap-2 md:justify-center items-center mt-4">
       <label className="border dark:border-gray-800  dark:bg-gray-800 flex justify-center gap-1 rounded-md py-2 px-4">
@@ -44,33 +48,29 @@ const Pagination: React.FC<PaginationProps> = ({
         </select>
       </label>
       <div className="grid lg:flex gap-4 items-center text-sm">
-        {!loading && totalPages > 0 && totalPages >= currentPage && (
-          <>
-            {" "}
-            <div className="text-center mt-2 md:mt-0 lg:text-start">
-              {" "}
-              Page {currentPage} sur {totalPages}
-            </div>
-            <div className="flex  gap-2">
-              <button
-                className="border justify-center dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
-                onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
-                disabled={currentPage === 1}
-              >
-                <ChevronLeft /> Précédent
-              </button>
-              <button
-                className="border justify-center dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
-                onClick={() =>
-                  onPageChange(Math.min(currentPage + 1, totalPages))
-                }
-                disabled={currentPage === totalPages}
-              >
-                Suivant <ChevronRight />
-              </button>
-            </div>
-          </>
-        )}
+        <>
+          <div className="text-center mt-2 md:mt-0 lg:text-start">
+            Page {currentPage} sur {totalPages}
+          </div>
+          <div className="flex  gap-2">
+            <button
+              className="border justify-center dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
+              onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
+              disabled={currentPage === 1}
+            >
+              <ChevronLeft /> Précédent
+            </button>
+            <button
+              className="border justify-center dark:border-gray-800  dark:bg-gray-800 w-full md:w-auto flex whitespace-nowrap disabled:cursor-default disabled:opacity-50 items-center cursor-pointer rounded-md px-4 py-4 md:py-2"
+              onClick={() =>
+                onPageChange(Math.min(currentPage + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+            >
+              Suivant <ChevronRight />
+            </button>
+          </div>
+        </>
       </div>
     </div>
   );

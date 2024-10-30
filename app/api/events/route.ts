@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ events });
   } catch (error) {
     const msg = "Erreur lors de la récupération des événements.";
-    console.log(msg + "" + error);
+
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

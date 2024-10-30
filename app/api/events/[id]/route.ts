@@ -19,7 +19,7 @@ export async function GET(
     }
   } catch (error) {
     const msg = "Erreur lors de la récupération de l'événement.";
-    console.log(msg + "" + error);
+
     return NextResponse.json({ error: msg }, { status: 500 });
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import EventCard from "@/components/EventCard";
+import EventCard from "@/components/Events/EventCard";
 import Filters from "@/components/Filters";
 import Pagination from "@/components/Pagination";
 import SkeletonCard from "@/components/Spinner";
@@ -7,14 +7,16 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchEvents } from "@/lib/fetchEvents";
 import { Drama } from "lucide-react";
-import { EventRecord } from "@/lib/models.type";
+import { useFilterContext } from "@/context/FilterContext";
+import { Event, FilterType } from "@/types/search.type";
+import FilterDisplay from "../FilterDisplay";
 
 interface EventsListProps {
   initialSearch: string;
   initialPage: number;
   initialEventsPerPage: number;
   initialTotalEvents: number;
-  initialEvents: EventRecord[];
+  initialEvents: Event[];
 }
 
 const EventsList = ({
@@ -31,6 +33,7 @@ const EventsList = ({
   const [events, setEvents] = useState(initialEvents ?? []);
   const [totalEvents, setTotalEvents] = useState(initialTotalEvents);
   const [loading, setLoading] = useState(false);
+  const { filters } = useFilterContext();
 
   const searchParams = useSearchParams();
 
@@ -59,9 +62,14 @@ const EventsList = ({
         setError("");
         setLoading(true);
         try {
-          const response = await fetchEvents(newSearch, newPerPage, newPage);
-          setEvents(response.records);
-          setTotalEvents(response.nhits);
+          const response = await fetchEvents(
+            newSearch,
+            newPerPage,
+            newPage,
+            filters
+          );
+          setEvents(response.results);
+          setTotalEvents(response.total_count);
         } catch {
           setError("Erreur lors de la récupération des événements");
         } finally {
@@ -75,6 +83,7 @@ const EventsList = ({
     initialPage,
     currentPage,
     search,
+    filters,
     eventsPerPage,
     initialEventsPerPage,
     initialSearch,
@@ -84,7 +93,7 @@ const EventsList = ({
   // Arrondi du nombre de page
   const totalPages = Math.ceil(totalEvents / eventsPerPage);
 
-  const handleSearch = async (query: string) => {
+  const handleSearch = async (query: string, CustomFilter?: FilterType) => {
     setSearch(query);
     setCurrentPage(1);
 
@@ -93,9 +102,19 @@ const EventsList = ({
     newUrl.searchParams.set("page", "1");
     window.history.pushState({}, "", newUrl.toString());
 
-    const response = await fetchEvents(query, eventsPerPage, 1);
-    setEvents(response.records);
-    setTotalEvents(response.nhits);
+    if (!CustomFilter) {
+      const response = await fetchEvents(query, eventsPerPage, 1, CustomFilter);
+
+      setEvents(response.results);
+      setTotalEvents(response.total_count);
+    } else {
+      const response = await fetchEvents(query, eventsPerPage, 1, filters);
+      setEvents(response.results);
+      setTotalEvents(response.total_count);
+    }
+  };
+  const newSearch = (filter: FilterType) => {
+    handleSearch(search, filter);
   };
 
   return (
@@ -111,22 +130,16 @@ const EventsList = ({
           ""
         )}
       </div>
-      {error && (
-        <div className="px-4 py-2 shadow rounded-md my-4 border-red-700 text-red-800 bg-red-100 text-sm">
-          {error}
-        </div>
-      )}
+      <FilterDisplay newSearch={newSearch} />
+      <DisplayError error={error} />
 
       <div className="py-4">
         {loading ? (
           <SkeletonCard nb={eventsPerPage ?? 4} />
         ) : events?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {events.map((event, index) => (
-              <EventCard
-                key={index + "_" + Math.random() * 999}
-                event={event}
-              />
+            {events.map((event: Event, index) => (
+              <EventCard key={index} event={event} />
             ))}
           </div>
         ) : (
@@ -159,6 +172,16 @@ const EventsList = ({
 
 export default EventsList;
 
+const DisplayError = ({ error }: { error: string }) => {
+  if (!error) {
+    return;
+  }
+  return (
+    <div className="px-4 py-2 shadow rounded-md my-4 border-red-700 text-red-800 bg-red-100 text-sm">
+      {error}
+    </div>
+  );
+};
 const EventNull = () => {
   return (
     <div className="text-center border dark:border-gray-800 dark:bg-gray-800 shadow-sm rounded-lg py-10">
