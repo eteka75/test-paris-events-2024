@@ -20,13 +20,22 @@ const FilterDisplay = ({
   useEffect(() => {
     newSearch(filters);
   }, [filters]);
-
+  if (
+    filters?.sort === "" &&
+    filters?.price === "" &&
+    filters?.locale === "" &&
+    filters?.audience === "" &&
+    filters?.startDate === null &&
+    filters?.endDate === null
+  ) {
+    return;
+  }
   return (
-    <div className="flex flex-wrap gap-2 mt-2">
+    <div className="flex flex-wrap gap-2 mb-2">
       {filters && filters["sort"] && (
-        <div className="flex rounded-sm items-center border px-2 text-sm space-x-2">
+        <div className="flex rounded-sm items-center border px-4 text-sm space-x-2 py-1">
           <span className="">
-            <b>Trier par:</b>{" "}
+            <b>Trier par : </b>{" "}
             {filters["sort"] === "date_asc" ? "Plus anciens" : "Plus récents"}
           </span>
           <button onClick={() => handleRemoveFilter("sort")}>
@@ -35,9 +44,9 @@ const FilterDisplay = ({
         </div>
       )}
       {filters && filters["audience"] && (
-        <div className="flex rounded-sm items-center border px-2 text-sm space-x-2">
+        <div className="flex rounded-sm items-center border px-4 text-sm space-x-2 py-1">
           <span className="capitalize">
-            <b> Audience</b>:{" "}
+            <b> Audience : </b>{" "}
             {filters["audience"] === "public_public"
               ? "Tout public"
               : filters["audience"] === "public_adultes"
@@ -52,9 +61,9 @@ const FilterDisplay = ({
         </div>
       )}
       {filters && filters["locale"] && (
-        <div className="flex rounded-sm items-center border px-2 text-sm space-x-2">
+        <div className="flex rounded-sm items-center border px-4 text-sm space-x-2 py-1">
           <span className="capitalize">
-            <b>Langue:</b>
+            <b>Langue : </b>{" "}
             {filters["locale"] == "fr"
               ? "Français"
               : filters["locale"] == "en"
@@ -67,9 +76,9 @@ const FilterDisplay = ({
         </div>
       )}
       {filters && filters["price"] && (
-        <div className="flex rounded-sm items-center border px-2 text-sm space-x-2">
+        <div className="flex rounded-sm items-center border px-4 text-sm space-x-2 py-1">
           <span className="capitalize">
-            <b>Type: </b>
+            <b>Type : </b>{" "}
             {filters["price"] === "All" ? "Tout" : filters["price"]}
           </span>
           <button onClick={() => handleRemoveFilter("price")}>
@@ -78,9 +87,9 @@ const FilterDisplay = ({
         </div>
       )}
       {filters && filters["startDate"] && (
-        <div className="flex rounded-sm items-center border px-2 text-sm space-x-2">
+        <div className="flex rounded-sm items-center border px-4 text-sm space-x-2 py-1">
           <span>
-            <b> Débute le:</b>{" "}
+            <b> Débute le </b>{" "}
             {format(filters["startDate"], "PPP", { locale: fr })}
           </span>
           <button onClick={() => handleRemoveFilter("startDate")}>
@@ -89,9 +98,9 @@ const FilterDisplay = ({
         </div>
       )}
       {filters && filters["endDate"] && (
-        <div className="flex rounded-sm items-center border px-2 text-sm space-x-2">
+        <div className="flex rounded-sm items-center border px-4 text-sm space-x-2 py-1">
           <span>
-            <b> Prend fin le:</b>{" "}
+            <b> Prend fin le </b>{" "}
             {format(filters["endDate"], "PPP", { locale: fr })}
           </span>
           <button onClick={() => handleRemoveFilter("endDate")}>

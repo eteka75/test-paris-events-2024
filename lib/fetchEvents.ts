@@ -84,7 +84,7 @@ export async function fetchEvents(
     });
     return response.data;
   } catch (error) {
-    console.error("Erreur lors de la récupération des événements :", error);
+    // console.error("Erreur lors de la récupération des événements :", error);
     return [];
   }
 }
@@ -101,11 +101,11 @@ export async function fetchEventById(eventId: string) {
     if (response.data && response.data.total_count > 0) {
       return response.data.results[0];
     } else {
-      console.error("Aucun événement trouvé avec cet ID :", eventId);
+      // console.error("Aucun événement trouvé avec cet ID :", eventId);
       return null;
     }
   } catch (error) {
-    console.error("Erreur lors de la récupération de l'événement :", error);
+    // console.error("Erreur lors de la récupération de l'événement :", error);
     return null;
   }
 }

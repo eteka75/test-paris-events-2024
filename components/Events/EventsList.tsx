@@ -121,19 +121,17 @@ const EventsList = ({
     <>
       <Filters key={"search"} search={search} onSearch={handleSearch} />
 
-      <div className="text-sm text-center md:text-start opacity-80">
-        {!loading && totalEvents && search !== "" ? (
-          <>
-            {totalEvents} résultats trouvé{totalEvents > 1 ? "s" : ""}
-          </>
-        ) : (
-          ""
-        )}
-      </div>
+      {!loading && totalEvents && search !== "" ? (
+        <div className="text-sm text-center md:text-start opacity-80 mb-2">
+          {totalEvents} résultats trouvé{totalEvents > 1 ? "s" : ""}
+        </div>
+      ) : (
+        ""
+      )}
       <FilterDisplay newSearch={newSearch} />
       <DisplayError error={error} />
 
-      <div className="py-4">
+      <div className="pb-16">
         {loading ? (
           <SkeletonCard nb={eventsPerPage ?? 4} />
         ) : events?.length > 0 ? (

@@ -26,6 +26,9 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  ::selection {
+    @apply bg-blue-600 text-white;
+  }
 }
 
 @layer base {

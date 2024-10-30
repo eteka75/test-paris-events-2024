@@ -1,17 +1,16 @@
 // components/Filters.tsx
 "use client";
 
-import { Search, SearchCheckIcon, SlidersHorizontal } from "lucide-react";
+import { Search } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
 import SearchFilters from "./SearchFilters";
 import { FiltersProps } from "@/types/search.type";
+import { useEffect, useState } from "react";
 
 const cities = [
   "Montparnasse",
-  "Champs-Élysées",
+  "Champs-Elysées",
   "Le Marais",
   "Quartier latin",
 ];
@@ -57,13 +56,13 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           Rechercher
         </label>
         <div className="relative flex ">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-1 ">
+          <div className="absolute inset-y-0 start-0 flex items-center ps-[3px] ">
             <SearchFilters onFilters={handleFilter} />
           </div>
           <input
             type="search"
             id="default-search"
-            className="block w-full p-4 ps-16 text-sm text-gray-900 border bg-white border-gray-300 rounded-lg  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full py-4 ps-14 pe-16 md:pe-32  text-sm text-gray-900 border bg-white border-gray-300 rounded-md  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Trouvez votre événement à Paris..."
             required
             value={query}
@@ -71,7 +70,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           />
           <button
             type="submit"
-            className="text-white min-h-6 flex items-center h-12 whitespace-nowrap absolute end-1 bottom-[3px] bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white shadow-none min-h-6 flex items-center h-12 whitespace-nowrap absolute end-[3px] bottom-[3px] border cursor-pointer bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             aria-label="Rechercher"
           >
             <Search className="h-5 w-5 mr-1 md:hidden" />
@@ -80,7 +79,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
         </div>
       </form>
 
-      <div className="flex flex-wrap justify-center md:justify-start  space-x-3space-y-4 text-sm">
+      <div className="flex flex-wrap justify-center  mt-4   space-x-3space-y-4 text-sm">
         <Link
           className={`border dark:border-gray-800   mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
             (activeCity === null || activeCity === "") &&

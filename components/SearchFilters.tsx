@@ -1,4 +1,4 @@
-import { CalendarIcon, RotateCcw, SlidersHorizontal } from "lucide-react";
+import { CalendarIcon, RotateCcw, SlidersHorizontal, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -76,13 +76,13 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
           aria-label="Filtrer la recherche"
           title="Filtrer la recherche"
           type="button"
-          className="h-12 rounded-md cursor-pointer bg-blue-500 hover:bg-blue-600"
+          className="h-12 rounded border cursor-pointer bg-blue-500 hover:bg-blue-600 shadow-none"
         >
           <SlidersHorizontal className="h-8 w-8" />
         </Button>
       </SheetTrigger>
 
-      <SheetContent className="w-[400px] sm:w-[540px]">
+      <SheetContent className="w-[400px] sm:w-[540px] max-w-full">
         <SheetHeader>
           <SheetTitle>Filtrer les événements</SheetTitle>
           <SheetDescription>
@@ -191,7 +191,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
                     id="startDate"
                     variant={"outline"}
                     className={cn(
-                      "w-[240px] justify-start text-left font-normal",
+                      "min-w-[240px] w-full justify-start text-left font-normal",
                       !filters.startDate && "text-muted-foreground"
                     )}
                   >
@@ -226,7 +226,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
                     id="endDate"
                     variant={"outline"}
                     className={cn(
-                      "w-[240px] justify-start text-left font-normal",
+                      "min-w-[240px] w-full justify-start text-left font-normal",
                       !filters.endDate && "text-muted-foreground"
                     )}
                   >
@@ -254,7 +254,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
         <SheetFooter className="grid mt-4 pt-4 border-t md:flex gap-2 ">
           <Button
             onClick={resetFilters}
-            className="w-full"
+            className="w-full h-12"
             variant={"outline"}
             title="Réinitialiser"
             aria-label="Réinitialiser"
@@ -263,7 +263,13 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
             <span className="">Réinitialiser</span>
           </Button>
           <SheetClose asChild>
-            <Button type="button">Fermer</Button>
+            <Button
+              type="button"
+              className="h-12 rounded border cursor-pointer bg-blue-500 hover:bg-blue-600"
+            >
+              <X />
+              Fermer
+            </Button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>
