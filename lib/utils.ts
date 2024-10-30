@@ -1,4 +1,3 @@
-import { FilterType } from "@/types/search.type";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
