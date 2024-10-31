@@ -44,6 +44,7 @@ interface SearchFiltersProps {
 
 const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
   const { filters, dispatch } = useFilterContext();
+  const [mounted, setMounted] = useState(false);
 
   const handleSortChange = (value: string) =>
     dispatch({ type: "SET_SORT", payload: value });
@@ -63,11 +64,13 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
     }
   };
 
-  const resetFilters = () => dispatch({ type: "RESET_FILTERS" });
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const applyFilters = () => {
-    onFilters(filters);
-  };
+  if (!mounted) return null;
+
+  const resetFilters = () => dispatch({ type: "RESET_FILTERS" });
 
   return (
     <Sheet>
@@ -76,7 +79,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
           aria-label="Filtrer la recherche"
           title="Filtrer la recherche"
           type="button"
-          className="h-12 rounded border cursor-pointer bg-blue-500 hover:bg-blue-600 shadow-none"
+          className="h-12 rounded text-white border cursor-pointer bg-blue-500 hover:bg-blue-600 shadow-none"
         >
           <SlidersHorizontal className="h-8 w-8" />
         </Button>
@@ -84,7 +87,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
 
       <SheetContent className="w-[400px] sm:w-[540px] max-w-full">
         <SheetHeader>
-          <SheetTitle>Filtrer les événements</SheetTitle>
+          <SheetTitle className="uppercase">Filtrer les événements</SheetTitle>
           <SheetDescription>
             Choisissez vos options de filtrage pour affiner les résultats de
             recherche.
@@ -263,7 +266,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
           <SheetClose asChild>
             <Button
               type="button"
-              className="h-12 rounded border cursor-pointer bg-blue-500 hover:bg-blue-600"
+              className="h-12 rounded border text-white cursor-pointer bg-blue-500 hover:bg-blue-600"
             >
               <X />
               Fermer

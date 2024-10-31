@@ -2,7 +2,7 @@
 import EventCard from "@/components/Events/EventCard";
 import Filters from "@/components/Filters";
 import Pagination from "@/components/Pagination";
-import SkeletonCard from "@/components/Spinner";
+import SkeletonCard from "@/components/SkeletonCard";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { fetchEvents } from "@/lib/fetchEvents";

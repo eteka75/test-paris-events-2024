@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import EventTitle from "./EventTitle";
+import { format } from "date-fns";
 
 export default function EventCard({ event }: { event: Event }) {
   const searchParams = useSearchParams();
@@ -38,7 +39,7 @@ export default function EventCard({ event }: { event: Event }) {
       </Link>
       <div className="flex flex-wrap justify-between flex-grow p-4">
         <Link href={`/event/${id}`}>
-          <h2 className="text-lg hover:text-blue-700 font-semibold">
+          <h2 className="text-lg hover:text-blue-700 dark:hover:text-blue-400 font-semibold">
             <EventTitle title={title ?? ""} query={query ?? ""} />
           </h2>
           <h3 title={lead_text ?? ""} className="text-sm opacity-70">
@@ -49,7 +50,7 @@ export default function EventCard({ event }: { event: Event }) {
           {date_start && (
             <div className="flex whitespace-nowrap gap-1 items-center">
               <Calendar1 className="w-4 h-4 -mt-0.5" />
-              {new Date(date_start ?? "").toLocaleDateString()}
+              {format(new Date(date_start), "dd/MM/yyyy")}
             </div>
           )}
           {price_type && (

@@ -13,7 +13,7 @@ export function highlightTitle(title: string, query: string) {
   const regex = new RegExp(`(${escapedQuery})`, "gi");
   const highTitle = title.replace(
     regex,
-    `<span class="bg-yellow-300">$1</span>`
+    `<span class="bg-yellow-300 dark:text-background dark:hover:text-blue-400 dark:hover:bg-transparent">$1</span>`
   );
   return highTitle;
 }

@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FilterProvider } from "@/context/FilterContext";
+import { ThemeProvider } from "next-themes";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -48,13 +49,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <main className="px-4 py-6 max-w-screen-sm mx-auto grid grid-rows-[50px_1fr_110px] lg:grid-rows-[50px_1fr_60px] min-h-screen">
-          <Header title="Les Évènements à Paris" />
-          <div>
-            <FilterProvider>{children}</FilterProvider>
+        <ThemeProvider attribute="class" defaultTheme="system">
+          <div className="px-4 py-6 max-w-screen-sm mx-auto grid grid-rows-[50px_1fr_110px] lg:grid-rows-[50px_1fr_60px] min-h-screen">
+            <Header title="Les Évènements à Paris" />
+            <main>
+              <FilterProvider>{children}</FilterProvider>
+            </main>
+            <Footer />
           </div>
-          <Footer />
-        </main>
+        </ThemeProvider>
       </body>
     </html>
   );

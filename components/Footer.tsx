@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 const Footer = () => {
   return (
@@ -22,6 +23,9 @@ const Footer = () => {
         </Link>
       </footer>
       <div className="my-2 text-center text-xs opacity-70">
+        <div className="text-center flex justify-center mb-2">
+          <ThemeSwitcher />
+        </div>
         <p>&copy; {new Date().getFullYear()} Beebs Event.</p>
       </div>
     </>

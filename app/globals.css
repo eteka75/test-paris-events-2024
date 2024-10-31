@@ -18,6 +18,10 @@
   @apply text-xl;
 }
 
+.tgradient {
+  @apply bg-gradient-to-r from-green-400 via-blue-500 to-purple-600;
+}
+
 body {
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }

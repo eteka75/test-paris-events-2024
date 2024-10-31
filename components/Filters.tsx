@@ -56,7 +56,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           Rechercher
         </label>
         <div className="relative flex ">
-          <div className="absolute inset-y-0 start-0 flex items-center ps-[3px] ">
+          <div className="absolute inset-y-0  start-0 flex items-center ps-[3px] ">
             <SearchFilters onFilters={handleFilter} />
           </div>
           <input
