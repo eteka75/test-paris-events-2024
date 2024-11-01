@@ -25,7 +25,7 @@ export default function EventCard({ event }: { event: Event }) {
   const img = cover_url ?? "/assets/img/default.png";
 
   return (
-    <div className="border dark:border-gray-800 dark:bg-gray-800 dark:shadow-lg rounded-lg shadow-md overflow-hidden flex flex-col">
+    <div className=" dark:border-gray-800 dark:bg-gray-800 dark:shadow-lg rounded-lg shadow-md overflow-hidden flex flex-col">
       <Link
         href={`/event/${id}`}
         aria-label={`Voir les details de l'évènement ${title}`}
@@ -44,6 +44,7 @@ export default function EventCard({ event }: { event: Event }) {
         <Link
           href={`/event/${id}`}
           aria-label={`Voir les details de l'évènement ${title}`}
+          passHref
         >
           <h2 className="text-lg hover:text-blue-700 dark:hover:text-blue-400 font-semibold">
             <EventTitle title={title ?? ""} query={query ?? ""} />

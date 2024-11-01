@@ -13,9 +13,7 @@ export async function fetchEvents(
   try {
     const safeLimit = isNaN(limit) || limit <= 0 ? 4 : limit;
     const safePage = isNaN(currentPage) || currentPage <= 0 ? 1 : currentPage;
-    const locals = {
-      locale: ["fr", "de"],
-    };
+
     const start = (safePage - 1) * safeLimit;
     const selectFields =
       "id,url,title,lead_text,description,date_start,date_end,date_description,cover_url,cover_alt,cover_credit,tags,address_name,address_street,address_zipcode,address_city,lat_lon,pmr,price_type,audience,locale";

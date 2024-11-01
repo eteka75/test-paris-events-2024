@@ -72,7 +72,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           />
           <button
             type="submit"
-            className="text-white shadow-none min-h-6 flex items-center h-12 whitespace-nowrap absolute end-[3px] bottom-[3px] border cursor-pointer bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className="text-white dark:text-background shadow-none min-h-6 flex items-center h-12 whitespace-nowrap absolute end-[3px] bottom-[3px] border-0 cursor-pointer bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             aria-label="Rechercher"
           >
             <Search className="h-5 w-5 mr-1 md:hidden" />
@@ -102,7 +102,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           <Link
             className={`text-xs   md:text-sm rounded-full py-1 px-2 flex justify-center items-center ${
               !activeCity && !search
-                ? "bg-blue-500 text-white"
+                ? "bg-blue-500 dark:text-background text-white font-medium"
                 : "bg-gray-100 dark:bg-gray-800"
             }`}
             href={`/?nb_par_page=${nbPerPage}`}
@@ -116,7 +116,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
             <Link
               className={`text-xs md:text-sm max-w-40 text-ellipsis truncate whitespace-nowrap rounded-full py-1 px-2 flex justify-center items-center ${
                 activeCity === city
-                  ? "bg-blue-500 text-white"
+                  ? "bg-blue-500 dark:text-background font-medium text-white"
                   : "bg-gray-100 dark:bg-gray-800"
               }`}
               href={`/?search=${city}&nb_par_page=${nbPerPage}`}

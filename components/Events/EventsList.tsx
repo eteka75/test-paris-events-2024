@@ -42,29 +42,18 @@ const EventsList = ({
       searchParams.get("nb_par_page") || `${initialEventsPerPage}`,
       10
     );
+
+    // mise a jour au besoin
     if (
-      !initialEvents ||
-      currentPage !== initialPage || // je verifie si la page a changé
-      search !== initialSearch ||
-      currentPage !== initialPage ||
-      initialEventsPerPage !== eventsPerPage // je verifie aussi si la le nombre d'event par page a changé
+      search !== newSearch ||
+      currentPage !== newPage ||
+      eventsPerPage !== newPerPage
     ) {
       setSearch(newSearch);
       setCurrentPage(newPage);
       setEventsPerPage(newPerPage);
-      console.log("LOADED " + new Date());
-      setRefreshData(true);
     }
-  }, [
-    searchParams,
-    currentPage,
-    eventsPerPage,
-    search,
-    initialEvents,
-    initialPage,
-    initialEventsPerPage,
-    initialSearch,
-  ]);
+  }, [searchParams, initialSearch, initialPage, initialEventsPerPage]);
 
   //utilitaire derecherche
   const { data, error, isLoading, mutate } = useSWR(
@@ -83,14 +72,16 @@ const EventsList = ({
   const totalPages = Math.ceil(totalEvents / eventsPerPage);
 
   const handleSearch = (query: string) => {
-    setSearch(query);
-    setCurrentPage(1);
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.set("search", query);
-    newUrl.searchParams.set("page", "1");
-    window.history.pushState({}, "", newUrl.toString());
-    setRefreshData(true);
-    mutate();
+    if (query) {
+      setSearch(query);
+      setCurrentPage(1);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set("search", query);
+      newUrl.searchParams.set("page", "1");
+      window.history.pushState({}, "", newUrl.toString());
+      setRefreshData(true);
+      mutate();
+    }
   };
 
   const newSearch = () => {
@@ -137,6 +128,7 @@ const EventsList = ({
           newUrl.searchParams.set("page", newPage.toString());
           window.history.pushState({}, "", newUrl.toString());
           setCurrentPage(newPage);
+          setRefreshData(true);
         }}
         itemsPerPage={eventsPerPage}
         onItemsPerPageChange={(newItemsPerPage) => {
@@ -144,6 +136,7 @@ const EventsList = ({
           newUrl.searchParams.set("nb_par_page", newItemsPerPage.toString());
           window.history.pushState({}, "", newUrl.toString());
           setEventsPerPage(newItemsPerPage);
+          setRefreshData(true);
         }}
       />
     </>
