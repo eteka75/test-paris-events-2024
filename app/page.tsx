@@ -1,6 +1,6 @@
 import EventsList from "@/components/Events/EventsList";
 import { fetchEvents } from "@/lib/fetchEvents";
-import { HomePageProps } from "@/lib/props.type";
+import { HomePageProps } from "@/types/search.type";
 
 export const metadata = {
   title: "Beebs Event",

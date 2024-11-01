@@ -57,6 +57,15 @@ export interface FilterType {
   endDate: Date | null;
   locale: string;
 }
+export interface HomePageProps {
+  searchParams: {
+    query?: string;
+    limit?: string;
+    page?: string;
+    search?: string;
+    nb_par_page?: string;
+  };
+}
 
 export type FilterAction =
   | { type: "SET_SORT"; payload: string }

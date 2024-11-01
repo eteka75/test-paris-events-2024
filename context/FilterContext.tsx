@@ -61,5 +61,4 @@ export const FilterProvider: React.FC<{ children: ReactNode }> = ({
   );
 };
 
-// mon Hook
 export const useFilterContext = () => useContext(FilterContext);

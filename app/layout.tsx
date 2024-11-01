@@ -1,4 +1,4 @@
-import "./globals.css";
+import "@/app/css/globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { FilterProvider } from "@/context/FilterContext";

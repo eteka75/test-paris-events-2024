@@ -1,4 +1,3 @@
-// components/Filters.tsx
 "use client";
 
 import { Search } from "lucide-react";
@@ -24,6 +23,7 @@ const cities = [
  */
 export default function Filters({ onSearch, search }: FiltersProps) {
   const [query, setQuery] = useState<string>();
+  const [mounted, setMounted] = useState<boolean>(false);
   const [activeCity, setActiveCity] = useState<string | null>(null);
 
   const handleSearch = (e: React.FormEvent) => {
@@ -43,6 +43,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
   useEffect(() => {
     setQuery(search ?? "");
     setActiveCity(search ?? "");
+    setMounted(true);
   }, [search]);
 
   const searchParams = useSearchParams();
@@ -81,52 +82,54 @@ export default function Filters({ onSearch, search }: FiltersProps) {
         </div>
       </form>
 
-      <Swiper
-        spaceBetween={5}
-        slidesPerView={3}
-        slidesPerGroup={1}
-        breakpoints={{
-          240: {
-            slidesPerView: 2,
-          },
-          340: {
-            slidesPerView: 3,
-          },
-          768: {
-            slidesPerView: 4,
-          },
-        }}
-        className="mb-2 mt-4 mx-auto"
-      >
-        <SwiperSlide>
-          <Link
-            className={`text-xs   md:text-sm rounded-full py-1 px-2 flex justify-center items-center ${
-              !activeCity && !search
-                ? "bg-blue-600 text-white font-medium"
-                : "bg-gray-100 dark:bg-gray-800"
-            }`}
-            href={`/?nb_par_page=${nbPerPage}`}
-            onClick={() => handleCityClick(null)}
-          >
-            Accueil
-          </Link>
-        </SwiperSlide>
-        {cities.map((city) => (
-          <SwiperSlide key={city}>
+      {mounted && (
+        <Swiper
+          spaceBetween={5}
+          slidesPerView={3}
+          slidesPerGroup={1}
+          breakpoints={{
+            240: {
+              slidesPerView: 2,
+            },
+            340: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+          }}
+          className="mb-2 mt-4 mx-auto"
+        >
+          <SwiperSlide>
             <Link
-              className={`text-xs md:text-sm max-w-40 text-ellipsis truncate whitespace-nowrap rounded-full py-1 px-2 flex justify-center items-center ${
-                activeCity === city
-                  ? "bg-blue-600  font-medium text-white"
+              className={`text-xs   md:text-sm rounded-full py-1 px-2 flex justify-center items-center ${
+                !activeCity && !search
+                  ? "bg-blue-600 text-white font-medium"
                   : "bg-gray-100 dark:bg-gray-800"
               }`}
-              href={`/?search=${city}&nb_par_page=${nbPerPage}`}
-              onClick={() => handleCityClick(city)}
+              href={`/?nb_par_page=${nbPerPage}`}
+              onClick={() => handleCityClick(null)}
             >
-              {city}
+              Accueil
             </Link>
           </SwiperSlide>
-        ))}
-      </Swiper>
+          {cities.map((city) => (
+            <SwiperSlide key={city}>
+              <Link
+                className={`text-xs md:text-sm max-w-40 text-ellipsis truncate whitespace-nowrap rounded-full py-1 px-2 flex justify-center items-center ${
+                  activeCity === city
+                    ? "bg-blue-600  font-medium text-white"
+                    : "bg-gray-100 dark:bg-gray-800"
+                }`}
+                href={`/?search=${city}&nb_par_page=${nbPerPage}`}
+                onClick={() => handleCityClick(city)}
+              >
+                {city}
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 }
