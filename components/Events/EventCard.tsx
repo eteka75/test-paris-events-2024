@@ -26,19 +26,25 @@ export default function EventCard({ event }: { event: Event }) {
 
   return (
     <div className="border dark:border-gray-800 dark:bg-gray-800 dark:shadow-lg rounded-lg shadow-md overflow-hidden flex flex-col">
-      <Link href={`/event/${id}`}>
+      <Link
+        href={`/event/${id}`}
+        aria-label={`Voir les details de l'évènement ${title}`}
+      >
         <Image
           src={img}
           alt={cover_alt ?? ""}
-          loading="lazy"
           decoding="async"
           className="w-full h-48 object-cover"
           width={500}
           height={500}
+          priority
         />
       </Link>
       <div className="flex flex-wrap justify-between flex-grow p-4">
-        <Link href={`/event/${id}`}>
+        <Link
+          href={`/event/${id}`}
+          aria-label={`Voir les details de l'évènement ${title}`}
+        >
           <h2 className="text-lg hover:text-blue-700 dark:hover:text-blue-400 font-semibold">
             <EventTitle title={title ?? ""} query={query ?? ""} />
           </h2>

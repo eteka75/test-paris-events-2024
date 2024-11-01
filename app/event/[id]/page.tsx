@@ -10,14 +10,16 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { BottomBack, MiniLinkBack } from "./ui/BackBtn";
 
-const Event = async ({ params }: { params: { id: string } }) => {
-  const { id } = params;
-
+async function getEventData(id: string) {
   const event = await fetchEventById(id);
-
   if (!event) {
     notFound();
   }
+  return event;
+}
+
+const Event = async ({ params }: { params: { id: string } }) => {
+  const event = await getEventData(params.id);
 
   return (
     <div className="md:shadow event-article md:py-8 md:px-10 md:border dark:border-gray-800  dark:md:bg-gray-800 md:rounded-md">
@@ -102,18 +104,10 @@ const Event = async ({ params }: { params: { id: string } }) => {
 export default Event;
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const id = params.id || "";
-  const event = await fetchEventById(id);
-
-  if (!event) {
-    return {
-      title: "Événement non trouvé",
-      description: "Aucun événement trouvé pour cet identifiant.",
-    };
-  }
+  const event = await getEventData(params.id);
 
   return {
-    title: `${event.title} - Beebs Events`,
-    description: event.lead_text || "Description de l'événement.",
+    title: event ? `${event.title} - Beebs Events` : "Événement non trouvé",
+    description: event?.lead_text || "Evènement non trouvé.",
   };
 }

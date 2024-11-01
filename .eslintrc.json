@@ -6,10 +6,7 @@
   },
   "overrides": [
     {
-      "files": ["*.js", "*.ts", "*.jsx", "*.tsx"],
-      "linterOptions": {
-        "reportUnusedDisableDirectives": true
-      }
+      "files": ["*.js", "*.ts", "*.jsx", "*.tsx"]
     }
   ]
 }

@@ -8,15 +8,16 @@ import { useSearchParams } from "next/navigation";
 import { fetchEvents } from "@/lib/fetchEvents";
 import { Drama } from "lucide-react";
 import { useFilterContext } from "@/context/FilterContext";
-import { Event, FilterType } from "@/types/search.type";
+import { Event } from "@/types/search.type";
 import FilterDisplay from "../FilterDisplay";
+import useSWR from "swr";
 
 interface EventsListProps {
   initialSearch: string;
   initialPage: number;
   initialEventsPerPage: number;
   initialTotalEvents: number;
-  initialEvents: Event[];
+  initialEvents: Event[] | null;
 }
 
 const EventsList = ({
@@ -26,128 +27,109 @@ const EventsList = ({
   initialTotalEvents,
   initialEvents,
 }: EventsListProps) => {
-  const [error, setError] = useState("");
   const [search, setSearch] = useState(initialSearch);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [eventsPerPage, setEventsPerPage] = useState(initialEventsPerPage);
-  const [events, setEvents] = useState(initialEvents ?? []);
-  const [totalEvents, setTotalEvents] = useState(initialTotalEvents);
-  const [loading, setLoading] = useState(false);
-  const { filters } = useFilterContext();
+  const [refreshData, setRefreshData] = useState(false);
 
+  const { filters } = useFilterContext();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     const newSearch = searchParams.get("search") || initialSearch;
     const newPage = parseInt(searchParams.get("page") || `${initialPage}`, 10);
-
     const newPerPage = parseInt(
       searchParams.get("nb_par_page") || `${initialEventsPerPage}`,
       10
     );
-
-    setSearch(newSearch);
-    setCurrentPage(newPage);
-    setEventsPerPage(newPerPage);
-
-    // optimisation de la requete
     if (
-      initialEvents?.length === 0 ||
+      !initialEvents ||
       currentPage !== initialPage || // je verifie si la page a changé
       search !== initialSearch ||
       currentPage !== initialPage ||
       initialEventsPerPage !== eventsPerPage // je verifie aussi si la le nombre d'event par page a changé
     ) {
-      const fetchData = async () => {
-        setError("");
-        setLoading(true);
-        try {
-          const response = await fetchEvents(
-            newSearch,
-            newPerPage,
-            newPage,
-            filters
-          );
-          setEvents(response.results);
-          setTotalEvents(response.total_count);
-        } catch {
-          setError("Erreur lors de la récupération des événements");
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchData();
+      setSearch(newSearch);
+      setCurrentPage(newPage);
+      setEventsPerPage(newPerPage);
+      console.log("LOADED " + new Date());
+      setRefreshData(true);
     }
   }, [
     searchParams,
-    initialPage,
     currentPage,
-    search,
-    filters,
     eventsPerPage,
+    search,
+    initialEvents,
+    initialPage,
     initialEventsPerPage,
     initialSearch,
-    initialEvents,
   ]);
 
+  //utilitaire derecherche
+  const { data, error, isLoading, mutate } = useSWR(
+    refreshData ? [search, eventsPerPage, currentPage, filters] : null,
+    ([search, eventsPerPage, currentPage, filters]) =>
+      fetchEvents(search, eventsPerPage, currentPage, filters),
+    {
+      fallbackData: { results: initialEvents, total_count: initialTotalEvents },
+      revalidateOnFocus: false,
+    }
+  );
+
+  const events = data?.results ?? [];
+  const totalEvents = data?.total_count ?? initialTotalEvents;
   // Arrondi du nombre de page
   const totalPages = Math.ceil(totalEvents / eventsPerPage);
 
-  const handleSearch = async (query: string, CustomFilter?: FilterType) => {
+  const handleSearch = (query: string) => {
     setSearch(query);
     setCurrentPage(1);
-
     const newUrl = new URL(window.location.href);
     newUrl.searchParams.set("search", query);
     newUrl.searchParams.set("page", "1");
     window.history.pushState({}, "", newUrl.toString());
-
-    if (!CustomFilter) {
-      const response = await fetchEvents(query, eventsPerPage, 1, CustomFilter);
-
-      setEvents(response.results);
-      setTotalEvents(response.total_count);
-    } else {
-      const response = await fetchEvents(query, eventsPerPage, 1, filters);
-      setEvents(response.results);
-      setTotalEvents(response.total_count);
-    }
+    setRefreshData(true);
+    mutate();
   };
-  const newSearch = (filter: FilterType) => {
-    handleSearch(search, filter);
+
+  const newSearch = () => {
+    handleSearch(search);
   };
 
   return (
     <>
       <Filters key={"search"} search={search} onSearch={handleSearch} />
 
-      {!loading && totalEvents && search !== "" ? (
+      {!isLoading && totalEvents && search !== "" ? (
         <div className="text-sm text-center md:text-start opacity-80 mb-2">
           {totalEvents} résultats trouvé{totalEvents > 1 ? "s" : ""}
         </div>
-      ) : (
-        ""
-      )}
-      <FilterDisplay newSearch={newSearch} />
-      <DisplayError error={error} />
+      ) : null}
 
-      <div className="pb-4">
-        {loading ? (
-          <SkeletonCard nb={eventsPerPage ?? 4} />
-        ) : events?.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-2">
-            {events.map((event: Event, index) => (
-              <EventCard key={index} event={event} />
-            ))}
-          </div>
-        ) : (
-          <EventNull key={"eventnull"} />
-        )}
-      </div>
+      <FilterDisplay newSearch={newSearch} />
+
+      {error ? (
+        <DisplayError error={"Erreur lors de la récupération des événements"} />
+      ) : (
+        <div className="pb-4">
+          {isLoading ? (
+            <SkeletonCard nb={eventsPerPage} />
+          ) : events.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 py-2">
+              {events.map((event: Event) => (
+                <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+          ) : (
+            <EventNull key={"eventnull"} />
+          )}
+        </div>
+      )}
 
       <Pagination
         key={"pagination"}
-        loading={loading}
+        loading={isLoading}
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={(newPage) => {
@@ -180,6 +162,7 @@ const DisplayError = ({ error }: { error: string }) => {
     </div>
   );
 };
+
 const EventNull = () => {
   return (
     <div className="text-center border dark:border-gray-800 dark:bg-gray-800 shadow-sm rounded-lg py-10">

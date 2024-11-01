@@ -38,9 +38,9 @@ const initialFilters: FilterType = {
   sort: "",
   price: "",
   audience: "",
+  locale: "",
   startDate: null,
   endDate: null,
-  locale: "",
 };
 
 const FilterContext = createContext<{

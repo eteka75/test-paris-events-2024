@@ -1,4 +1,3 @@
-// SkeletonCard.tsx
 interface SkeletonCardProps {
   nb: number;
 }
@@ -9,7 +8,7 @@ export default function SkeletonCard({ nb = 4 }: SkeletonCardProps) {
       {Array.from({ length: nb }).map((_, index) => (
         <div
           key={index}
-          className="animate-pulse border rounded-lg p-4 bg-gray-200 dark:border-gray-900 dark:bg-gray-900"
+          className="animate-pulse border rounded-lg p-4 bg-gray-200 dark:border-gray-900 dark:bg-gray-800"
         >
           <div className="h-40 bg-gray-300 dark:bg-gray-700 rounded-md mb-4"></div>
           <div className="h-4 bg-gray-300 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
