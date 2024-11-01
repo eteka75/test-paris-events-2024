@@ -72,16 +72,14 @@ const EventsList = ({
   const totalPages = Math.ceil(totalEvents / eventsPerPage);
 
   const handleSearch = (query: string) => {
-    if (query) {
-      setSearch(query);
-      setCurrentPage(1);
-      const newUrl = new URL(window.location.href);
-      newUrl.searchParams.set("search", query);
-      newUrl.searchParams.set("page", "1");
-      window.history.pushState({}, "", newUrl.toString());
-      setRefreshData(true);
-      mutate();
-    }
+    setSearch(query);
+    setCurrentPage(1);
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.set("search", query);
+    newUrl.searchParams.set("page", "1");
+    window.history.pushState({}, "", newUrl.toString());
+    setRefreshData(true);
+    mutate();
   };
 
   const newSearch = () => {
