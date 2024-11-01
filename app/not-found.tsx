@@ -1,5 +1,3 @@
-// app/not-found/page.tsx
-
 import { Home, WifiOff } from "lucide-react";
 import Link from "next/link";
 

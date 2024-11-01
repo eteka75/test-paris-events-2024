@@ -7,6 +7,8 @@ import { useSearchParams } from "next/navigation";
 import SearchFilters from "./SearchFilters";
 import { FiltersProps } from "@/types/search.type";
 import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 
 const cities = [
   "Montparnasse",
@@ -56,7 +58,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
           Rechercher
         </label>
         <div className="relative flex ">
-          <div className="absolute inset-y-0  start-0 flex items-center ps-[3px] ">
+          <div className="absolute inset-y-0 text-white start-0 flex items-center ps-[3px] ">
             <SearchFilters onFilters={handleFilter} />
           </div>
           <input
@@ -79,34 +81,52 @@ export default function Filters({ onSearch, search }: FiltersProps) {
         </div>
       </form>
 
-      <div className="flex flex-wrap justify-center  mt-4   space-x-3space-y-4 text-sm">
-        <Link
-          className={`border dark:border-gray-800   mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
-            (activeCity === null || activeCity === "") &&
-            (search === "" || search === null)
-              ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
-              : "dark:bg-gray-800 bg-white"
-          }`}
-          href={`/?nb_par_page=${nbPerPage}`}
-          onClick={() => handleCityClick(null)}
-        >
-          Accueil
-        </Link>
-        {cities.map((city) => (
+      <Swiper
+        spaceBetween={5}
+        slidesPerView={3}
+        slidesPerGroup={1}
+        breakpoints={{
+          240: {
+            slidesPerView: 2,
+          },
+          340: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 4,
+          },
+        }}
+        className="mb-2 mt-4 mx-auto"
+      >
+        <SwiperSlide>
           <Link
-            key={city}
-            className={`border dark:border-gray-800   mr-2 mb-2 whitespace-nowrap py-1 px-3 h-7 items-center flex rounded-full shadow-ms ${
-              activeCity === city
-                ? "bg-blue-500 dark:bg-blue-600 border-0 text-white"
-                : "dark:bg-gray-800 bg-white"
+            className={`text-xs md:text-sm rounded-full py-1 px-2 flex justify-center items-center ${
+              !activeCity && !search
+                ? "bg-blue-500 text-white"
+                : "bg-white dark:bg-gray-800"
             }`}
-            href={`/?search=${city}&nb_par_page=${nbPerPage}`}
-            onClick={() => handleCityClick(city ?? "")}
+            href={`/?nb_par_page=${nbPerPage}`}
+            onClick={() => handleCityClick(null)}
           >
-            {city}
+            Accueil
           </Link>
+        </SwiperSlide>
+        {cities.map((city) => (
+          <SwiperSlide key={city}>
+            <Link
+              className={`text-xs md:text-sm max-w-40 text-ellipsis truncate whitespace-nowrap rounded-full py-1 px-2 flex justify-center items-center ${
+                activeCity === city
+                  ? "bg-blue-500 text-white"
+                  : "bg-white dark:bg-gray-800"
+              }`}
+              href={`/?search=${city}&nb_par_page=${nbPerPage}`}
+              onClick={() => handleCityClick(city)}
+            >
+              {city}
+            </Link>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
     </div>
   );
 }

@@ -26,6 +26,15 @@ body {
   font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
+.swiper-slide,
+.swiper-wrapper {
+  max-width: 300px;
+}
+.swiper-slide a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;
