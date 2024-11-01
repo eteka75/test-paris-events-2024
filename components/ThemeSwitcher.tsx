@@ -41,7 +41,7 @@ const ThemeSwitcher = () => {
         onClick={() => setTheme("system")}
         className={`p-2 rounded-full ${
           theme === "system"
-            ? "bg-blue-500 text-white shadow-sm"
+            ? "bg-blue-600 text-white shadow-sm"
             : "text-gray-600"
         }`}
         aria-label="System mode"

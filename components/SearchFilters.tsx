@@ -79,7 +79,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
           aria-label="Filtrer la recherche"
           title="Filtrer la recherche"
           type="button"
-          className="h-12 rounded text-white dark:text-background border-0 cursor-pointer bg-blue-500 hover:bg-blue-600 shadow-none"
+          className="h-12 rounded text-white border-0 cursor-pointer bg-blue-600 hover:bg-blue-600 shadow-none"
         >
           <SlidersHorizontal className="h-8 w-8" />
         </Button>
@@ -266,7 +266,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilters }) => {
           <SheetClose asChild>
             <Button
               type="button"
-              className="h-12 rounded border text-white cursor-pointer bg-blue-500 hover:bg-blue-600"
+              className="h-12 rounded border text-white cursor-pointer bg-blue-600 hover:bg-blue-600"
             >
               <X />
               Fermer
