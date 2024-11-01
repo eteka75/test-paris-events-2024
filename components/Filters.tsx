@@ -100,7 +100,7 @@ export default function Filters({ onSearch, search }: FiltersProps) {
       >
         <SwiperSlide>
           <Link
-            className={`text-xs md:text-sm rounded-full py-1 px-2 flex justify-center items-center ${
+            className={`text-xs border bg-slate-100 md:text-sm rounded-full py-1 px-2 flex justify-center items-center ${
               !activeCity && !search
                 ? "bg-blue-500 text-white"
                 : "bg-white dark:bg-gray-800"
