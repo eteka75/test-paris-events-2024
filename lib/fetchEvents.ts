@@ -51,6 +51,7 @@ export async function fetchEvents(
       const startDate = formatDate(filters?.startDate);
       whereConditions.push(`date_start>="${startDate}"`);
     }
+
     // endDate dateFin
     if (filters?.endDate && filters?.endDate !== null) {
       const endDate = formatDate(filters?.endDate);
@@ -73,6 +74,11 @@ export async function fetchEvents(
     // Ajout des conditions dans `params`
     if (queryConditions.length > 0) {
       params["where"] = queryConditions.join(" AND ");
+    }
+    // Gestion du tri
+    if (filters?.sort) {
+      params["order_by"] =
+        filters.sort === "date_asc" ? "updated_at asc" : "updated_at desc";
     }
 
     const response = await axios.get(apiUrl, { params });
