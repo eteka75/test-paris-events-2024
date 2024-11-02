@@ -28,7 +28,9 @@ export default function Filters({ onSearch, search }: FiltersProps) {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(query ? query.trim() : "");
+    if (query) {
+      onSearch(query);
+    }
     setActiveCity(`${query}`);
   };
 

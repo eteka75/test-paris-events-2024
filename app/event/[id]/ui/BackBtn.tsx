@@ -1,14 +1,14 @@
 "use client";
 import { useCallback } from "react";
 import { ChevronLeft } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const MiniLinkBack = () => {
   const router = useRouter();
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = useSearchParams();
+
   const handleBackClick = useCallback(() => {
     const targetPath = `/?${searchParams.toString()}`;
-    router.push(targetPath);
     router.push(targetPath);
   }, [router, searchParams]);
 
@@ -23,11 +23,10 @@ export const MiniLinkBack = () => {
 };
 export const BottomBack = () => {
   const router = useRouter();
-  const searchParams = new URLSearchParams(window.location.search);
+  const searchParams = useSearchParams();
 
   const handleBackClick = useCallback(() => {
     const targetPath = `/?${searchParams.toString()}`;
-    router.push(targetPath);
     router.push(targetPath);
   }, [router, searchParams]);
 

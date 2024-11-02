@@ -73,13 +73,14 @@ const EventsList = ({
 
   const handleSearch = (query: string) => {
     setSearch(query);
-    setCurrentPage(1);
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.set("search", query);
-    newUrl.searchParams.set("page", "1");
-    window.history.pushState({}, "", newUrl.toString());
-    setRefreshData(true);
-    mutate();
+    if (search) {
+      setCurrentPage(1);
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.set("search", query);
+      window.history.pushState({}, "", newUrl.toString());
+      setRefreshData(true);
+      mutate();
+    }
   };
 
   const newSearch = () => {
@@ -93,7 +94,7 @@ const EventsList = ({
       <Filters key={"search"} search={search} onSearch={handleSearch} />
 
       {!isLoading && totalEvents && search !== "" ? (
-        <div className="text-sm text-center md:text-start opacity-80 mb-2">
+        <div className="text-sm text-start opacity-80 mb-2">
           {totalEvents} résultats trouvé{totalEvents > 1 ? "s" : ""}
         </div>
       ) : null}

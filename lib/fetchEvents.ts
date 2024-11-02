@@ -11,7 +11,7 @@ export async function fetchEvents(
   filters?: FilterType
 ) {
   try {
-    console.log(filters, "search:", new Date());
+    // console.log(filters, "search:", new Date());
     const safeLimit = isNaN(limit) || limit <= 0 ? 4 : limit;
     const safePage = isNaN(currentPage) || currentPage <= 0 ? 1 : currentPage;
 
