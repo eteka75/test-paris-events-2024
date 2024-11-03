@@ -49,6 +49,12 @@ export default function EventCard({ event }: { event: Event }) {
           <h2 className="text-lg hover:text-blue-700 dark:hover:text-blue-400 font-semibold">
             <EventTitle title={title ?? ""} query={query ?? ""} />
           </h2>
+        </Link>
+        <Link
+          href={`/event/${id}`}
+          aria-label={`Voir les details de l'évènement ${title}`}
+          passHref
+        >
           <h3 title={lead_text ?? ""} className="text-sm opacity-70">
             {lead_text?.slice(0, 100)}...
           </h3>
