@@ -11,7 +11,6 @@ Vous pouvez accéder à l'API en cliquant sur ce lien ci-dessous :
 - [Installation](#installation)
 - [Fonctionnement](#fonctionnement)
 - [Technologies utilisées](#technologies-utilisées)
-- [Utilisation](#utilisation)
 - [Licence](#licence)
 
 ## Prérequis
@@ -66,7 +65,7 @@ ou si vous utilisé npm
     npm run dev
 ```
 
-Le projet sera alors disponible à l'adresse suivante : [http://localhost:3000] (http://localhost:3000).
+Le projet sera alors disponible à l'adresse suivante : [http://localhost:3000](http://localhost:3000).
 
 Au cas où ce port est utilisé, un autre port choisi sera affiché dans la console ; il vous suffira de copier et coller ce lien dans votre navigateur.
 
@@ -82,7 +81,7 @@ Au cas où ce port est utilisé, un autre port choisi sera affiché dans la cons
 - **Next.js - App Router 14.2 :** Framework React
 - **React JS :** Bibliothèque JavaScript pour concevoir les interfaces
 - **TypeScript :** Gestion du typage des données.
-- **CSS Modules / TailwindCSS :** Pour la mise en forme des composants.
+- **CSS Modules / TailwindCSS / Sadcn UI :** Pour la mise en forme des composants.
 - **Lucide :** Usage d'icones sur différents composants.
 - **API REST - Axios :** Pour récupérer les événements sur Paris.
 

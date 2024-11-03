@@ -28,7 +28,7 @@ body {
 
 .swiper-slide,
 .swiper-wrapper {
-  max-width: 300px;
+  max-width: 200px;
 }
 .swiper-slide a {
   display: flex;
